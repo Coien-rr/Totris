@@ -1,5 +1,6 @@
 <script setup>
-import ActiveSection from './components/ActiveSection.vue'
+import ActiveSection from './views/ActiveSection.vue'
+import Workplace from './views/Workplace.vue'
 </script>
 
 <template>
@@ -9,7 +10,7 @@ import ActiveSection from './components/ActiveSection.vue'
         <ActiveSection />
       </div>
       <div class="column is-10 is-offset-2 workplace">
-        Second column
+        <Workplace />
       </div>
     </section>
   </main>

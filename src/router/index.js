@@ -5,11 +5,11 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/workplace',
+      redirect: '/dashboard',
     },
     {
-      path: '/workplace',
-      component: () => import('~/pages/WorkPlace/Workplace.vue'),
+      path: '/dashboard',
+      component: () => import('~/pages/Dashboard/Dashboard.vue'),
     },
   ],
 })

@@ -48,7 +48,7 @@ const activeTasks = ref(0)
 
 #taskMsg {
   font-family: 'Itim', cursive;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.9px;
   z-index: 3;
   color: rgb(85, 93, 108);
@@ -56,6 +56,6 @@ const activeTasks = ref(0)
   position: absolute;
   top: 53%;
   transform: translateX(-50%) translateY(-50%);
-  left: 68%
+  left: 65%
 }
 </style>
