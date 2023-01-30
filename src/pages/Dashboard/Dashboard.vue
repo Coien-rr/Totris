@@ -4,7 +4,7 @@ import Workplace from './views/Workplace.vue'
 </script>
 
 <template>
-  <main class="App container is-fluid">
+  <div class="App container is-fluid">
     <section class="columns">
       <div class="column is-2 active">
         <ActiveSection />
@@ -13,7 +13,7 @@ import Workplace from './views/Workplace.vue'
         <Workplace />
       </div>
     </section>
-  </main>
+  </div>
 </template>
 
 <style scoped>
@@ -37,19 +37,5 @@ import Workplace from './views/Workplace.vue'
   border-top-left-radius: 18px;
   border-bottom-left-radius: 18px;
   box-shadow: rgb(166 166 167 / 30%) -4px 0px 18px 0px;
-}
-
-.logo {
-  height: 4.5em;
-  padding: 1.5em;
-  will-change: filter;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>
