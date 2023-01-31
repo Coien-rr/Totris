@@ -1,9 +1,7 @@
 <script setup>
-// import { reactive } from 'vue'
 import { useCategoryStore } from '~/store'
 
 const localCategories = useCategoryStore()
-// localCategories.init()
 </script>
 
 <template>

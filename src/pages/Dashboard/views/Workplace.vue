@@ -1,30 +1,15 @@
 <script setup>
-import { computed, reactive } from 'vue'
+import { computed } from 'vue'
 import CategoryGroup from '../components/CategoryGroup.vue'
 import TaskCard from '../components/TaskCard.vue'
+import { useTaskStore } from '~/store'
 
-const tasks = reactive([
-  {
-    id: 1,
-    todo: 'testTask',
-    priority: 1,
-    deadline: '1-31 23:00',
-  },
-  {
-    id: 2,
-    todo: 'finish taskCard',
-    priority: 2,
-    deadline: '1-31 23:30',
-  },
-  {
-    id: 3,
-    todo: 'add task store',
-    priority: 3,
-    deadline: '1-31 23:59',
-  },
-])
-
-const isSorted = computed(tasks.sort((a, b) => b.priority - a.priority))
+const taskStore = useTaskStore()
+// HACK: this store data is not changed with action methods
+// eslint-disable-next-line unused-imports/no-unused-vars
+const isSorted = computed(taskStore.tasks.sort((a, b) => {
+  return b.priority - a.priority
+}))
 </script>
 
 <template>
@@ -54,7 +39,7 @@ const isSorted = computed(tasks.sort((a, b) => b.priority - a.priority))
             </div>
           </div>
           <div class="card-content">
-            <TaskCard v-for="task in tasks" :key="task.id" :item="task" />
+            <TaskCard v-for="task in taskStore.tasks" :key="task.id" :item="task" />
           </div>
         </div>
       </section>
