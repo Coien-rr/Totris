@@ -1,49 +1,18 @@
 <script setup>
-import { reactive } from 'vue'
+// import { reactive } from 'vue'
+import { useCategoryStore } from '~/store'
 
-const categories = reactive([
-  {
-    id: 1,
-    name: '🚀QuickStart',
-    isActive: true,
-  },
-  {
-    id: 2,
-    name: '📓Doc',
-    isActive: false,
-  },
-  {
-    id: 3,
-    name: '🛠️Tools',
-    isActive: false,
-  },
-  {
-    id: 4,
-    name: '🔭Read later',
-    isActive: false,
-  },
-  {
-    id: 5,
-    name: '🪄ToTry',
-    isActive: false,
-  },
-])
-
-function toggleActiveCategory(category) {
-  categories.forEach((c) => {
-    c.isActive = false
-  })
-  category.isActive = true
-}
+const localCategories = useCategoryStore()
+localCategories.init()
 </script>
 
 <template>
   <div class="is-flex is-11 is-offset-1 categories ">
     <div
-      v-for="category in categories" :key="category.id" class="category button" :class="{ active: category.isActive }"
-      @click="toggleActiveCategory(category)"
+      v-for="category in localCategories.categories" :key="category.id" class="category button" :class="{ active: category.isActive }"
+      @click="localCategories.switchGroup(category)"
     >
-      {{ category.name }}
+      {{ category.icon }}{{ category.name }}
     </div>
   </div>
 </template>
