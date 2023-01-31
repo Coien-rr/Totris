@@ -1,5 +1,6 @@
 <script setup>
 import CategoryGroup from '../components/CategoryGroup.vue'
+import TaskCard from '../components/TaskCard.vue'
 </script>
 
 <template>
@@ -29,19 +30,11 @@ import CategoryGroup from '../components/CategoryGroup.vue'
             </div>
           </div>
           <div class="card-content">
-            <div class="task-card-container">
-              <div class="task-card-content is-flex is-flex-direction-row">
-                <div class="task-card-icon">
-                  <i id="icon" class="fa-regular fa-circle-notch" />
-                </div>
-                <div class="task-card-todo">
-                  todo
-                </div>
-              </div>
-              <div class="task-card-info">
-                📌 ⏰ 1/31 17:00
-              </div>
-            </div>
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
           </div>
         </div>
       </section>
@@ -169,52 +162,5 @@ import CategoryGroup from '../components/CategoryGroup.vue'
   height: 100%;
   width: 100%;
   min-height: 240px;
-}
-
-.task-card-container {
-  height: 60px;
-  border-radius: 8px;
-  /* background-color: aquamarine; */
-}
-
-.task-card-container:hover {
-  background-color: rgb(237, 240, 244);
-}
-
-.task-card-content {
-  /* padding-top: 2px; */
-  padding-bottom: 2px;
-  /* background-color: aqua; */
-  /* border-radius: 8px; */
-  height: 32px;
-  border-bottom: 2px solid rgb(237, 240, 244);
-}
-
-.task-card-icon {
-  width: 32px;
-  height: 100%;
-  margin-left: 12px;
-}
-
-#icon {
-  font-size: 20px;
-  margin-top: 8px;
-}
-
-.task-card-todo {
-  font-size: 22px;
-  margin-left: 8px;
-  font-weight: 600;
-  margin-top: 0px;
-  /* margin-bottom: px; */
-}
-
-.task-card-info {
-  height: 28px;
-  /* background-color: aquamarine; */
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 8px;
-  /* margin-top: 5px; */
 }
 </style>
