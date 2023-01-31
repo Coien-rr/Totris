@@ -1,6 +1,28 @@
 <script setup>
+import { reactive } from 'vue'
 import CategoryGroup from '../components/CategoryGroup.vue'
 import TaskCard from '../components/TaskCard.vue'
+
+const tasks = reactive([
+  {
+    id: 1,
+    todo: 'testTask',
+    priority: 1,
+    deadline: '1-31 23:00',
+  },
+  {
+    id: 2,
+    todo: 'finish taskCard',
+    priority: 2,
+    deadline: '1-31 23:30',
+  },
+  {
+    id: 3,
+    todo: 'add task store',
+    priority: 3,
+    deadline: '1-31 23:59',
+  },
+])
 </script>
 
 <template>
@@ -30,11 +52,7 @@ import TaskCard from '../components/TaskCard.vue'
             </div>
           </div>
           <div class="card-content">
-            <TaskCard />
-            <TaskCard />
-            <TaskCard />
-            <TaskCard />
-            <TaskCard />
+            <TaskCard v-for="task in tasks" :key="task.id" :item="task" />
           </div>
         </div>
       </section>

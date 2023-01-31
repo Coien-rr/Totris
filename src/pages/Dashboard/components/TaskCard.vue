@@ -1,5 +1,20 @@
 <script setup>
+import { computed } from 'vue'
+const task = defineProps({
+  item: Object,
+})
 
+const isNormal = computed(() => {
+  return task.item.priority === 1
+})
+
+const isUrgent = computed(() => {
+  return task.item.priority === 2
+})
+
+const isImmediate = computed(() => {
+  return task.item.priority === 3
+})
 </script>
 
 <template>
@@ -9,11 +24,11 @@
         <i id="icon" class="fa-regular fa-circle-notch" />
       </div>
       <div class="task-card-todo">
-        todo
+        {{ item.todo }}
       </div>
     </div>
     <div class="task-card-info">
-      📌 ⏰ 1/31 17:00
+      <i class="fa-solid fa-circle-exclamation priorIcon " :class="{ 'prior-normal': isNormal, 'prior-Urgent': isUrgent, 'prior-immediate': isImmediate }" /> ⏰ {{ item.deadline }}
     </div>
   </div>
 </template>
@@ -48,6 +63,22 @@
 #icon {
   font-size: 20px;
   margin-top: 8px;
+}
+
+.priorIcon {
+  margin-right: 55px;
+}
+
+.prior-normal {
+  color: rgb(0, 153, 255);
+}
+
+.prior-Urgent {
+  color: rgb(255, 153, 0);
+}
+
+.prior-immediate {
+  color: rgb(255, 0, 0);
 }
 
 .task-card-todo {
