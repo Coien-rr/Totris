@@ -3,7 +3,7 @@
 import { useCategoryStore } from '~/store'
 
 const localCategories = useCategoryStore()
-localCategories.init()
+// localCategories.init()
 </script>
 
 <template>
