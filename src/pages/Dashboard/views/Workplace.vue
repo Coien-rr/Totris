@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import CategoryGroup from '../components/CategoryGroup.vue'
 import TaskCard from '../components/TaskCard.vue'
 
@@ -23,6 +23,8 @@ const tasks = reactive([
     deadline: '1-31 23:59',
   },
 ])
+
+const isSorted = computed(tasks.sort((a, b) => b.priority - a.priority))
 </script>
 
 <template>
