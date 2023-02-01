@@ -73,7 +73,7 @@ const selectPriority = (item) => {
   font-size: 1rem;
   background-color: "rgb(237, 240, 244)";
   padding-left: 5px;
-  margin-left: 10px;
+  margin-left: 48px;
 }
 
 .prior-icon {
@@ -90,9 +90,7 @@ const selectPriority = (item) => {
   min-width: 7rem;
 }
 .prior-item {
-  /* background-color: aquamarine; */
   padding-left: 10px;
   text-align: left;
-  /* width: 60%; */
 }
 </style>

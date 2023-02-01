@@ -34,12 +34,12 @@ const setNewTaskPriority = (priority) => {
     </div>
     <div class="task-card-info is-flex is-flex-direction-row">
       <div class="task-card-info-prior">
-        <!-- <i class="fa-solid fa-circle-exclamation priorIcon " /> -->
-        <!-- TODO: abstract SelectPriority as a component -->
         <SelectPriority @select-priority="setNewTaskPriority" />
       </div>
       <div class="task-card-info-deadline">
-        ⏰DeadLine
+        <div id="deadline-select" class="control">
+          <input id="deadlineInput" class="input" type="datetime-local" value="2023-02-01T19:30">
+        </div>
       </div>
     </div>
   </div>
@@ -98,14 +98,21 @@ const setNewTaskPriority = (priority) => {
 }
 
 .task-card-info-prior {
-  width: 50%;
-}
-.priorIcon {
-  margin-right: 5px;
-  padding-left: 23px;
-  color: #10B981;
+  width: 40%;
 }
 .task-card-info-deadline {
-  width: 50%;
+  width: 60%;
+}
+
+#deadlineInput {
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  width: 80%;
+}
+
+#deadline-select {
+  font-size: 0.75rem;
+  margin-right: 30px;
 }
 </style>
