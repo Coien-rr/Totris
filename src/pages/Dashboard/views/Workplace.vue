@@ -14,7 +14,8 @@ import GroupCard from '../components/GroupCard.vue'
       <CategoryGroup />
     </header>
     <main>
-      <section class="group">
+      <section class="group is-flex">
+        <GroupCard />
         <GroupCard />
       </section>
     </main>
@@ -50,15 +51,12 @@ import GroupCard from '../components/GroupCard.vue'
 }
 
 .group {
-  display: block;
-  width: 367px;
+  flex-direction: row;
+  width: 100%;
   overflow: hidden;
   text-align: center;
   margin-right: 2vw;
   border: 0px;
-  border-radius: 18px;
-  box-shadow: rgb(165 182 185 / 36%) 0px 32px 36px -30px, rgb(171 174 181 / 18%) 0px 8px 16px -4px;
-  margin-left: 28px;
-  margin-top: 23px;
+  margin: 1.5rem 2rem;
 }
 </style>

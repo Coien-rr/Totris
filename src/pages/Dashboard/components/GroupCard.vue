@@ -13,7 +13,7 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
 
 <template>
   <div class="card">
-    <div class="card-header is-flex">
+    <div class="card-header">
       <div class="card-header-icon is-inline-flex">
         📬
       </div>
@@ -34,6 +34,7 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
 
 <style scoped>
 .card {
+  display: block;
   position: relative;
   user-select: auto;
   background: rgb(255, 255, 255);
@@ -42,7 +43,9 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
   max-width: 2495px;
   min-width: 240px;
   box-sizing: border-box;
-  flex-shrink: 0;
+  margin-right: 20px;
+  border-radius: 8px;
+  box-shadow: rgb(165 182 185 / 36%) 0px 32px 36px -30px, rgb(171 174 181 / 18%) 0px 8px 16px -4px;
 }
 
 .card-header {
