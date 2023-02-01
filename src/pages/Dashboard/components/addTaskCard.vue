@@ -1,15 +1,22 @@
 <script setup>
-import { ref } from 'vue'
+import { reactive } from 'vue'
+import SelectPriority from './selectPriority.vue'
 import { useTaskStore } from '~/store'
-// import SelectPriority from './selectPriority.vue';
 
 const taskStore = useTaskStore()
 
-const taskMessage = ref('')
+const newTask = reactive({
+  message: '',
+  priority: 0,
+  deadline: '',
+})
 
 const addNewTask = () => {
-  taskStore.addTask(taskMessage.value)
   taskMessage.value = ''
+}
+
+const setNewTaskPriority = (priority) => {
+  newTask.priority = priority
 }
 </script>
 
@@ -20,16 +27,16 @@ const addNewTask = () => {
       <div class="task-card-icon">
         <i id="addTaskIcon" class="fa-solid fa-rocket" />
       </div>
-      <input v-model.trim="taskMessage" class="input add-card-todo" type="text" placeholder="Add Task">
+      <input v-model.trim="newTask.message" class="input add-card-todo" type="text" placeholder="Add Task">
       <div class="add-card-bticon">
         <i id="addButton" class="fa-solid fa-square-plus" @click="addNewTask" />
       </div>
     </div>
     <div class="task-card-info is-flex is-flex-direction-row">
       <div class="task-card-info-prior">
-        <i class="fa-solid fa-circle-exclamation priorIcon " />
+        <!-- <i class="fa-solid fa-circle-exclamation priorIcon " /> -->
         <!-- TODO: abstract SelectPriority as a component -->
-        <!-- <SelectPriority /> -->
+        <SelectPriority @select-priority="setNewTaskPriority" />
       </div>
       <div class="task-card-info-deadline">
         ⏰DeadLine
