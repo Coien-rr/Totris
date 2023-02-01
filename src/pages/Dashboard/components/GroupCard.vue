@@ -22,7 +22,7 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
           Totris tasks
         </div>
         <div class="card-header-count is-flex">
-          10 tasks 🧩
+          {{ taskStore.getTaskCount() }} tasks 🧩
         </div>
       </div>
     </div>
@@ -63,7 +63,6 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
 }
 
 .card-header-icon {
-  /* background-color: cadetblue; */
   border-radius: 8px;
   font-weight: 300;
   height: 64px;
@@ -87,7 +86,6 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
 }
 
 .card-header-name {
-  /* background-color: aqua; */
   max-width: 100%;
   white-space: nowrap;
   font-weight: 700;

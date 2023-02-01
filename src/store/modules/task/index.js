@@ -27,7 +27,9 @@ export const useTaskStore = defineStore('tasks', {
     key: 'my-tasks-key',
   },
   getters: {
-
+    getTaskCount() {
+      return this.tasks.length
+    },
   },
   actions: {
     sortByPriority() {

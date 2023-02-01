@@ -30,9 +30,7 @@ import GroupCard from '../components/GroupCard.vue'
   padding-left: 24px;
   padding-right: 18px;
   margin-top: 24px;
-
   position: relative;
-  /* background-color: aqua; */
 }
 
 #wpButton {
