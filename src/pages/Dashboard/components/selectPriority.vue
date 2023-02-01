@@ -1,18 +1,10 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 const props = defineProps(['reset'])
 const emit = defineEmits(['selectPriority'])
 
 const trigger = ref(false)
 const priorIconColor = ref('#10B981')
-
-onMounted(() => {
-  document.addEventListener('click', closeDropDown)
-})
-
-onBeforeUnmount(() => {
-  document.removeEventListener('click', closeDropDown)
-})
 
 // NOTE: you can't watch attributes of reactive objects, you need use getter function like below code
 watch(() => props.reset, () => {
@@ -37,15 +29,6 @@ const priorityItem = [
   },
 ]
 
-const dropDownTrigger = () => {
-  trigger.value = !trigger.value
-}
-
-function closeDropDown() {
-  if (trigger.value)
-    trigger.value = false
-}
-
 const selectPriority = (item) => {
   trigger.value = false
   priorIconColor.value = item.iconColor
@@ -54,9 +37,9 @@ const selectPriority = (item) => {
 </script>
 
 <template>
-  <div class="dropdown" :class="{ 'is-active': trigger }" @click.stop>
+  <div class="dropdown is-hoverable" :class="{ 'is-active': trigger }" @click.stop>
     <div class="dropdown-trigger">
-      <div class="prior-trigger" aria-haspopup="true" aria-controls="dropdown-menu" @click="dropDownTrigger">
+      <div class="prior-trigger" aria-haspopup="true" aria-controls="dropdown-menu">
         <i class="fa-solid fa-circle-exclamation" :style="{ color: priorIconColor }" />
       </div>
     </div>
