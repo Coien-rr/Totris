@@ -37,5 +37,10 @@ export const useTaskStore = defineStore('tasks', {
         return b.priority - a.priority
       })
     },
+
+    addTask(newTask) {
+      console.log('add!')
+      console.log(newTask)
+    },
   },
 })

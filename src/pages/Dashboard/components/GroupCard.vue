@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import TaskCard from '../components/TaskCard.vue'
 import GroupCardHeader from '../components/GroupCardHeader.vue'
+import AddTaskCard from '../components/addTaskCard.vue'
 import { useTaskStore } from '~/store'
 
 const taskStore = useTaskStore()
@@ -17,6 +18,7 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
     <GroupCardHeader :task-count="taskStore.getTaskCount" />
     <div class="card-content">
       <TaskCard v-for="task in taskStore.tasks" :key="task.id" :item="task" />
+      <AddTaskCard />
     </div>
   </div>
 </template>

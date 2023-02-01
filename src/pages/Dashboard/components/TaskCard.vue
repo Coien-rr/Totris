@@ -37,7 +37,6 @@ const isImmediate = computed(() => {
 .task-card-container {
   height: 60px;
   border-radius: 8px;
-  /* background-color: aquamarine; */
   margin-bottom: 8px;
 }
 
@@ -46,10 +45,7 @@ const isImmediate = computed(() => {
 }
 
 .task-card-content {
-  /* padding-top: 2px; */
   padding-bottom: 2px;
-  /* background-color: aqua; */
-  /* border-radius: 8px; */
   height: 32px;
   border-bottom: 2px solid rgb(237, 240, 244);
 }
@@ -86,15 +82,12 @@ const isImmediate = computed(() => {
   margin-left: 8px;
   font-weight: 600;
   margin-top: 0px;
-  /* margin-bottom: px; */
 }
 
 .task-card-info {
   height: 28px;
-  /* background-color: aquamarine; */
   font-size: 16px;
   font-weight: 500;
   border-radius: 8px;
-  /* margin-top: 5px; */
 }
 </style>
