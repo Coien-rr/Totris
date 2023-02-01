@@ -1,18 +1,28 @@
 <script setup>
-import { reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import SelectPriority from './selectPriority.vue'
 import { useTaskStore } from '~/store'
 
 const taskStore = useTaskStore()
 
 const newTask = reactive({
-  message: '',
-  priority: 0,
-  deadline: '',
+  todo: '',
+  priority: 1,
+  deadline: `${new Date().toISOString().slice(0, 16)}`,
 })
 
+const isReSet = ref(true)
+
+const isNewTaskTodoEmpty = computed(() => newTask.todo === '')
+
 const addNewTask = () => {
-  taskMessage.value = ''
+  if (isNewTaskTodoEmpty.value)
+    return
+  taskStore.addTask(newTask)
+  newTask.todo = ''
+  newTask.priority = 1
+  newTask.deadline = `${new Date().toISOString().slice(0, 16)}`
+  isReSet.value = !isReSet.value
 }
 
 const setNewTaskPriority = (priority) => {
@@ -27,18 +37,18 @@ const setNewTaskPriority = (priority) => {
       <div class="task-card-icon">
         <i id="addTaskIcon" class="fa-solid fa-rocket" />
       </div>
-      <input v-model.trim="newTask.message" class="input add-card-todo" type="text" placeholder="Add Task">
+      <input v-model.trim="newTask.todo" class="input add-card-todo" type="text" placeholder="Add Task">
       <div class="add-card-bticon">
-        <i id="addButton" class="fa-solid fa-square-plus" @click="addNewTask" />
+        <i class="fa-solid fa-square-plus addButton" :class="{ 'inactive-addButton': isNewTaskTodoEmpty }" @click="addNewTask" />
       </div>
     </div>
     <div class="task-card-info is-flex is-flex-direction-row">
       <div class="task-card-info-prior">
-        <SelectPriority @select-priority="setNewTaskPriority" />
+        <SelectPriority :reset="isReSet" @select-priority="setNewTaskPriority" />
       </div>
       <div class="task-card-info-deadline">
         <div id="deadline-select" class="control">
-          <input id="deadlineInput" class="input" type="datetime-local" value="2023-02-01T19:30">
+          <input id="deadlineInput" v-model="newTask.deadline" class="input" type="datetime-local">
         </div>
       </div>
     </div>
@@ -84,11 +94,16 @@ const setNewTaskPriority = (priority) => {
   transition: border-bottom .1s ease;
 }
 
-#addButton {
+.addButton {
   font-size: 30px;
   color: #10B981;
   margin-left: 10px;
   margin-right: 5px;
+}
+
+.inactive-addButton {
+  color: #A0AEC0;
+  cursor: not-allowed;
 }
 
 .task-card-info {

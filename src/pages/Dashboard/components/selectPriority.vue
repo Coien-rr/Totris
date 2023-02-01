@@ -1,6 +1,6 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+const props = defineProps(['reset'])
 const emit = defineEmits(['selectPriority'])
 
 const trigger = ref(false)
@@ -12,6 +12,11 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.removeEventListener('click', closeDropDown)
+})
+
+// NOTE: you can't watch attributes of reactive objects, you need use getter function like below code
+watch(() => props.reset, () => {
+  priorIconColor.value = '#10B981'
 })
 
 const priorityItem = [
@@ -37,7 +42,6 @@ const dropDownTrigger = () => {
 }
 
 function closeDropDown() {
-  // priorIconColor.value = '#10B981'
   if (trigger.value)
     trigger.value = false
 }
@@ -73,7 +77,7 @@ const selectPriority = (item) => {
   font-size: 1rem;
   background-color: "rgb(237, 240, 244)";
   padding-left: 5px;
-  margin-left: 48px;
+  margin-left: 40px;
 }
 
 .prior-icon {

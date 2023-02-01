@@ -7,19 +7,19 @@ export const useTaskStore = defineStore('tasks', {
         id: 1,
         todo: 'testTask',
         priority: 1,
-        deadline: '1-31 23:00',
+        deadline: '01-31 23:00',
       },
       {
         id: 2,
         todo: 'finish taskCard',
         priority: 2,
-        deadline: '1-31 23:30',
+        deadline: '01-31 23:30',
       },
       {
         id: 3,
         todo: 'add task store',
         priority: 3,
-        deadline: '1-31 23:59',
+        deadline: '01-31 23:59',
       },
     ],
   }),
@@ -39,8 +39,13 @@ export const useTaskStore = defineStore('tasks', {
     },
 
     addTask(newTask) {
-      console.log('add!')
-      console.log(newTask)
+      this.tasks.push({
+        id: this.tasks.length,
+        todo: newTask.todo,
+        priority: newTask.priority,
+        deadline: `${newTask.deadline.split('-')[1]}-${newTask.deadline.split('-')[2].split('T')[0]} ${newTask.deadline.split('T')[1]}`,
+      })
+      this.sortByPriority()
     },
   },
 })
