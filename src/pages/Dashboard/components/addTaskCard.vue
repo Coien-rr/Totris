@@ -87,7 +87,7 @@ const setNewTaskPriority = (priority) => {
 }
 
 .add-card-todo {
-  font-size: 16px;
+  font-size: 18px;
   margin-left: 8px;
   font-weight: 630;
   margin-top: -1.5px;
