@@ -73,5 +73,12 @@ export const useTaskStore = defineStore('tasks', {
     getTaskCountByGroup(group) {
       return this.tasks.filter(task => task.group === group).length
     },
+
+    updateTaskByID(taskID, taskNewContent) {
+      const taskIndex = this.tasks.findIndex(task => task.id === taskID)
+      if (taskIndex === -1)
+        return
+      this.tasks[taskIndex].todo = taskNewContent
+    },
   },
 })

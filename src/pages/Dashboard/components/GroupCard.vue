@@ -24,13 +24,18 @@ const taskCount = computed(() => taskStore.getTaskCountByGroup(group.item.name))
 const updateGroupName = (newName) => {
   emit('groupNameUpdate', group.item.id, newName)
 }
+
+const updateTodo = (taskID, todoNewContent) => {
+  // console.log(taskID, todoNewContent)
+  taskStore.updateTaskByID(taskID, todoNewContent)
+}
 </script>
 
 <template>
   <div class="card">
     <GroupCardHeader :task-count="taskCount" :group-name="group.item.name" :group-icon="group.item.icon" @group-name-update="updateGroupName" />
     <div class="card-content">
-      <TaskCard v-for="task in taskStore.getTaskByGroup(group.item.name)" :key="task.id" :item="task" />
+      <TaskCard v-for="task in taskStore.getTaskByGroup(group.item.name)" :key="task.id" :item="task" @update-todo="updateTodo" />
       <AddTaskCard :group-name="group.item.name" />
     </div>
   </div>

@@ -1,8 +1,10 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 const task = defineProps({
   item: Object,
 })
+
+const emit = defineEmits(['updateTodo'])
 
 const isNormal = computed(() => {
   return task.item.priority === 1
@@ -15,6 +17,12 @@ const isUrgent = computed(() => {
 const isImmediate = computed(() => {
   return task.item.priority === 3
 })
+
+const todoContent = ref(task.item.todo)
+
+watch(todoContent, (newValue) => {
+  emit('updateTodo', task.item.id, newValue)
+})
 </script>
 
 <template>
@@ -24,7 +32,8 @@ const isImmediate = computed(() => {
         <i id="icon" class="fa-regular fa-circle-notch" />
       </div>
       <div class="task-card-todo">
-        {{ item.todo }}
+        <input v-model.lazy="todoContent" type="text" class="task-card-input">
+        <!-- {{ item.todo }} -->
       </div>
     </div>
     <div class="task-card-info">
@@ -41,13 +50,26 @@ const isImmediate = computed(() => {
 }
 
 .task-card-container:hover {
-  background-color: rgb(237, 240, 244);
+  -webkit-box-shadow: 0px 1px 15px 0px rgba(123, 191, 111, 0.32);
+  -moz-box-shadow: 0px 1px 15px 0px rgba(123, 191, 111, 0.32);
+  box-shadow: 0px 1px 15px 0px rgba(123, 191, 111, 0.32);
+  border-radius: 0.5rem;
 }
 
 .task-card-content {
   padding-bottom: 2px;
-  height: 32px;
+  height: 35px;
   border-bottom: 2px solid rgb(237, 240, 244);
+}
+
+.task-card-input{
+  border: none;
+  outline: none;
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 0px;
+  /* padding-bottom: 5px; */
+  /* background-color: aqua; */
 }
 
 .task-card-icon {
