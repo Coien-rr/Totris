@@ -39,7 +39,6 @@ const doneTask = () => {
       </div>
       <div class="task-card-todo">
         <input v-model.lazy="todoContent" type="text" class="task-card-input">
-        <!-- {{ item.todo }} -->
       </div>
     </div>
     <div class="task-card-info">
@@ -63,6 +62,7 @@ const doneTask = () => {
 }
 
 .task-card-content {
+  width: 100%;
   padding-bottom: 2px;
   height: 35px;
   border-bottom: 2px solid rgb(237, 240, 244);
@@ -74,8 +74,7 @@ const doneTask = () => {
   font-size: 22px;
   font-weight: 600;
   margin-top: 0px;
-  /* padding-bottom: 5px; */
-  /* background-color: aqua; */
+  width: 100%;
 }
 
 .task-card-icon {
