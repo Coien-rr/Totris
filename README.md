@@ -1,7 +1,83 @@
-# Vue 3 + Vite
+<h1 align="center">Welcome to Totris 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.33-blue.svg?cacheSeconds=2592000" />
+  <a href="documenturl" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="License url" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+</p>
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### 🏠 [**Homepage**](https://github.com/Coien-rr/Totris)
 
-## Recommended IDE Setup
+> A Todo vue3 app inspired by [**tabextend**](https://www.tabextend.com/)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### ✨ [**Demo**](https://coien-rr.github.io/Totris)
+
+<p align="center">
+  <img width="700" src="https://user-images.githubusercontent.com/83146518/216296846-947bb43e-2882-45bf-b351-0283abe09fe9.png" alt="Toris Demo"/>
+</p>
+
+## 🦄 Features
+
+- 👁️‍🗨️ [**Try online demo**](https://coien-rr.github.io/Totris/#/dashboard)
+- ⚡ **Base on LocalStorage**: No NetWork Requirement
+- 🦾 **Free classification**: categorize as you wish
+- 🔩 **Flexible**: Configurable every workplace and category
+- 🔌 **Optional (Use cloud databases)**: In the plan
+
+## ✅ TODO
+
+- [ ] add workplace management
+- [ ] add category management
+- [ ] add done task management
+- [ ] refactor task Card
+- [ ] add user management
+- [ ] add drag feature
+- [ ] provide cloud version
+- [ ] ...upcoming 💤  
+
+## 📦 Build Tools
+
+- 🦾 **Framework**—[**Vue**](https://vuejs.org)
+- 🍍 **Store**—[**Pinia**](https://pinia.vuejs.org/)
+- 🗺️ **Router**—[**Vue Router**](https://router.vuejs.org/index.html)
+- 🎨 **UI**—[**Bulma**](https://bulma.io/)
+- 💫 **Tool**—[**Vite**](https://vitejs.dev/)
+
+## 🛠️ Install
+
+```sh
+npm install
+```
+
+## 🚀 Usage
+
+```sh
+npm run dev
+```
+
+## Author
+
+🤖 **Coien-rr**
+
+- Website: <https://github.com/Coien-rr>
+- Github: [@Coien-rr](https://github.com/Coien-rr)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Coien-rr/Totris/issues).
+<!-- You can also take a look at the [contributing guide](contributing guide url). -->
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2023 [Coien-rr](https://github.com/Coien-rr).<br />
+This project is [MIT](https://github.com/Coien-rr/Totris/blob/main/LICENSE) licensed.
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
