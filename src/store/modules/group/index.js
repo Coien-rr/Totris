@@ -19,9 +19,17 @@ export const useGroupStore = defineStore('groups', {
     key: 'my-groups-key',
   },
   getters: {
-
+    getGroupCount() {
+      return this.groups.length
+    },
   },
   actions: {
-
+    addNewGroup() {
+      this.groups.push({
+        id: 3,
+        name: 'New Group',
+        icon: '📬',
+      })
+    },
   },
 })

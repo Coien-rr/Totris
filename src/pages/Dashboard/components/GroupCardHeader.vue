@@ -26,7 +26,6 @@ defineProps({
 .card-header {
   width: 367px;
   padding-left: 8px;
-  cursor: grab;
   box-shadow: none;
   position: absolute;
   top: 0px;

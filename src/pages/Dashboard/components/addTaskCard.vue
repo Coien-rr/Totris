@@ -121,9 +121,9 @@ const setNewTaskPriority = (priority) => {
 
 #deadlineInput {
   border: none;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  width: 80%;
+  width: 90%;
 }
 
 #deadline-select {

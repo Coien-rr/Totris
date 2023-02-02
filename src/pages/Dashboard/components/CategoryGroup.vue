@@ -10,7 +10,7 @@ const localCategories = useCategoryStore()
       v-for="category in localCategories.categories" :key="category.id" class="category button" :class="{ active: category.isActive }"
       @click="localCategories.switchGroup(category)"
     >
-      {{ category.icon }}{{ category.name }}
+      {{ category.icon }} {{ category.name }}
     </div>
   </div>
 </template>

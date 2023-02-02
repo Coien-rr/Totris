@@ -5,24 +5,36 @@ import { useGroupStore } from '~/store'
 
 const groupStore = useGroupStore()
 
-// console.log(groupStore.groups)
+const createNewGroup = () => {
+  // console.log('create new group')
+  if (groupStore.groups.length >= 4) {
+    alert('You can only have 4 groups!')
+    return
+  }
+  groupStore.addNewGroup()
+}
 </script>
 
 <template>
   <div>
-    <header id="tagHeader">
+    <header id="tagHeader" class="is-flex">
       <button id="wpButton" class="button">
         <span class="icon is-small">
           <i class="fa-solid fa-box-archive" />
         </span>
       </button>
       <CategoryGroup />
+      <div class="addNewGroup">
+        <button class="button is-primary" @click="createNewGroup">
+          <span class="icon is-small">
+            <i class="fa-solid fa-plus" />
+          </span>
+        </button>
+      </div>
     </header>
     <main>
       <section class="group is-flex">
         <GroupCard v-for="group in groupStore.groups" :key="group.id" :item="group" />
-        <!-- <GroupCard />
-        <GroupCard /> -->
       </section>
     </main>
   </div>
@@ -37,6 +49,13 @@ const groupStore = useGroupStore()
   padding-right: 18px;
   margin-top: 24px;
   position: relative;
+}
+
+.addNewGroup {
+  position: absolute;
+  right: 3%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 #wpButton {
@@ -61,6 +80,6 @@ const groupStore = useGroupStore()
   text-align: center;
   margin-right: 2vw;
   border: 0px;
-  margin: 1.5rem 2rem;
+  margin: 1.5rem 1rem;
 }
 </style>
