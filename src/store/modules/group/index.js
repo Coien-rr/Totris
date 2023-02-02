@@ -31,5 +31,12 @@ export const useGroupStore = defineStore('groups', {
         icon: '📬',
       })
     },
+
+    updateGroupNameById(id, newName) {
+      const groupIndex = this.groups.findIndex(group => group.id === id)
+      if (groupIndex === -1)
+        return
+      this.groups[groupIndex].name = newName
+    },
   },
 })

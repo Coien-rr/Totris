@@ -1,8 +1,17 @@
 <script setup>
-defineProps({
+import { ref, watch } from 'vue'
+const props = defineProps({
   taskCount: Number,
   groupName: String,
   groupIcon: String,
+})
+
+const emit = defineEmits(['groupNameUpdate'])
+
+const groupName = ref(props.groupName)
+
+watch(() => groupName.value, (newVal) => {
+  emit('groupNameUpdate', newVal)
 })
 </script>
 
@@ -13,7 +22,7 @@ defineProps({
     </div>
     <div class="card-header-content is-flex is-flex-direction-column">
       <div class="card-header-name is-inline-flex">
-        {{ groupName }}
+        <input v-model.lazy="groupName" type="text" class="card-header-input">
       </div>
       <div class="card-header-count is-flex">
         {{ taskCount }} tasks 🧩
@@ -24,7 +33,7 @@ defineProps({
 
 <style scoped>
 .card-header {
-  width: 367px;
+  width: 300px;
   padding-left: 8px;
   box-shadow: none;
   position: absolute;
@@ -60,12 +69,34 @@ defineProps({
 }
 
 .card-header-name {
-  max-width: 100%;
+  max-width: 80%;
   white-space: nowrap;
   font-weight: 700;
   color: rgb(26, 32, 44);
   font-size: 20px;
-  padding-top: 6px;
+  padding-top: 3px;
+  padding-bottom: 6px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.card-header-name:hover {
+  background-color: rgb(237, 240, 244);
+  border-radius: 8px;
+}
+
+.card-header-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(26, 32, 44);
+  padding-top: 5px;
+  padding-bottom: 3px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .card-header-count {

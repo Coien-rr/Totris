@@ -10,6 +10,8 @@ const group = defineProps({
   item: Object,
 })
 
+const emit = defineEmits(['groupNameUpdate'])
+
 const taskStore = useTaskStore()
 // HACK: this store data is not changed with it's action methods
 // eslint-disable-next-line unused-imports/no-unused-vars
@@ -18,11 +20,15 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
 }))
 
 const taskCount = computed(() => taskStore.getTaskCountByGroup(group.item.name))
+
+const updateGroupName = (newName) => {
+  emit('groupNameUpdate', group.item.id, newName)
+}
 </script>
 
 <template>
   <div class="card">
-    <GroupCardHeader :task-count="taskCount" :group-name="group.item.name" :group-icon="group.item.icon" />
+    <GroupCardHeader :task-count="taskCount" :group-name="group.item.name" :group-icon="group.item.icon" @group-name-update="updateGroupName" />
     <div class="card-content">
       <TaskCard v-for="task in taskStore.getTaskByGroup(group.item.name)" :key="task.id" :item="task" />
       <AddTaskCard />
