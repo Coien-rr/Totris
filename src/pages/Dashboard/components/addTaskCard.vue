@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import SelectPriority from './selectPriority.vue'
 import { useTaskStore } from '~/store'
 
@@ -17,6 +17,10 @@ const newTask = reactive({
 const isReSet = ref(true)
 
 const isNewTaskTodoEmpty = computed(() => newTask.todo === '')
+
+watch(() => group.groupName, () => {
+  newTask.group = group.groupName
+})
 
 const addNewTask = () => {
   if (isNewTaskTodoEmpty.value)
