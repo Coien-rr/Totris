@@ -19,7 +19,7 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
   return b.priority - a.priority
 }))
 
-const taskCount = computed(() => taskStore.getTaskCountByGroup(group.item.name))
+const taskCount = computed(() => taskStore.getTaskCountByGroupID(group.item.id))
 
 const updateGroupName = (newName) => {
   emit('groupNameUpdate', group.item.id, newName)
@@ -38,8 +38,8 @@ const doneTodo = (taskID) => {
   <div class="card">
     <GroupCardHeader :task-count="taskCount" :group-name="group.item.name" :group-icon="group.item.icon" @group-name-update="updateGroupName" />
     <div class="card-content">
-      <TaskCard v-for="task in taskStore.getTaskByGroup(group.item.name)" :key="task.id" :item="task" @update-todo="updateTodo" @done-task="doneTodo" />
-      <AddTaskCard :group-name="group.item.name" />
+      <TaskCard v-for="task in taskStore.getTaskByGroupID(group.item.id)" :key="task.id" :item="task" @update-todo="updateTodo" @done-task="doneTodo" />
+      <AddTaskCard :group-i-d="group.item.id" />
     </div>
   </div>
 </template>

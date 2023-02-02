@@ -3,7 +3,7 @@ import { computed, reactive, ref, watch } from 'vue'
 import SelectPriority from './selectPriority.vue'
 import { useTaskStore } from '~/store'
 
-const group = defineProps(['groupName'])
+const group = defineProps(['groupID'])
 
 const taskStore = useTaskStore()
 
@@ -11,15 +11,15 @@ const newTask = reactive({
   todo: '',
   priority: 1,
   deadline: `${new Date().toISOString().slice(0, 16)}`,
-  group: group.groupName,
+  groupID: group.groupID,
 })
 
 const isReSet = ref(true)
 
 const isNewTaskTodoEmpty = computed(() => newTask.todo === '')
 
-watch(() => group.groupName, () => {
-  newTask.group = group.groupName
+watch(() => group.groupID, () => {
+  newTask.groupID = group.groupID
 })
 
 const addNewTask = () => {

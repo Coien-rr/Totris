@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 export const useGroupStore = defineStore('groups', {
   state: () => ({
+    /** @type { idCount:number } */
+    idCount: 2,
     /** @type {{ id:number, name: string, icon: string,}[]} */
     groups: [
       {
@@ -25,8 +27,9 @@ export const useGroupStore = defineStore('groups', {
   },
   actions: {
     addNewGroup() {
+      this.idCount++
       this.groups.push({
-        id: 3,
+        id: this.idCount,
         name: 'New Group',
         icon: '📬',
       })

@@ -3,42 +3,42 @@ export const useTaskStore = defineStore('tasks', {
   state: () => ({
     /** @type { idCount:number } */
     idCount: 5,
-    /** @type {{ todo: string, priority: number, deadline: string, group: string }[]} */
+    /** @type {{ todo: string, priority: number, deadline: string, groupID: string }[]} */
     tasks: [
       {
         id: 1,
         todo: 'testTask',
         priority: 1,
         deadline: '02-11 23:00',
-        group: 'Dashboard',
+        groupID: 1,
       },
       {
         id: 2,
         todo: 'add register',
         priority: 1,
         deadline: '02-11 23:30',
-        group: 'LoginPage',
+        groupID: 2,
       },
       {
         id: 3,
         todo: 'add login',
         priority: 2,
         deadline: '02-11 23:59',
-        group: 'LoginPage',
+        groupID: 2,
       },
       {
         id: 4,
         todo: 'add task filter',
         priority: 3,
         deadline: '02-11 23:59',
-        group: 'Dashboard',
+        groupID: 1,
       },
       {
         id: 5,
         todo: 'refactor task store',
         priority: 1,
         deadline: '02-11 23:59',
-        group: 'Dashboard',
+        groupID: 1,
       },
     ],
   }),
@@ -64,17 +64,17 @@ export const useTaskStore = defineStore('tasks', {
         todo: newTask.todo,
         priority: newTask.priority,
         deadline: `${newTask.deadline.split('-')[1]}-${newTask.deadline.split('-')[2].split('T')[0]} ${newTask.deadline.split('T')[1]}`,
-        group: newTask.group,
+        groupID: newTask.groupID,
       })
       this.sortByPriority()
     },
 
-    getTaskByGroup(group) {
-      return this.tasks.filter(task => task.group === group)
+    getTaskByGroupID(groupID) {
+      return this.tasks.filter(task => task.groupID === groupID)
     },
 
-    getTaskCountByGroup(group) {
-      return this.tasks.filter(task => task.group === group).length
+    getTaskCountByGroupID(groupID) {
+      return this.tasks.filter(task => task.groupID === groupID).length
     },
 
     updateTaskByID(taskID, taskNewContent) {
