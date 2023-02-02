@@ -1,5 +1,6 @@
 <h1 align="center">Welcome to Totris 👋</h1>
-<p>
+
+<p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.33-blue.svg?cacheSeconds=2592000" />
   <a href="documenturl" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
@@ -27,17 +28,6 @@
 - 🔩 **Flexible**: Configurable every workplace and category
 - 🔌 **Optional (Use cloud databases)**: In the plan
 
-## ✅ TODO
-
-- [ ] add workplace management
-- [ ] add category management
-- [ ] add done task management
-- [ ] refactor task Card
-- [ ] add user management
-- [ ] add drag feature
-- [ ] provide cloud version
-- [ ] ...upcoming 💤  
-
 ## 📦 Build Tools
 
 - 🦾 **Framework**—[**Vue**](https://vuejs.org)
@@ -57,6 +47,17 @@ npm install
 ```sh
 npm run dev
 ```
+
+## ✅ TODO
+
+- [ ] add workplace management
+- [ ] add category management
+- [ ] add done task management
+- [ ] refactor task Card
+- [ ] add user management
+- [ ] add drag feature
+- [ ] provide cloud version
+- [ ] ...upcoming 💤  
 
 ## Author
 
