@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 export const useTaskStore = defineStore('tasks', {
   state: () => ({
+    /** @type { idCount:number } */
+    idCount: 5,
     /** @type {{ todo: string, priority: number, deadline: string, group: string }[]} */
     tasks: [
       {
@@ -56,8 +58,9 @@ export const useTaskStore = defineStore('tasks', {
     },
 
     addTask(newTask) {
+      this.idCount++
       this.tasks.push({
-        id: this.tasks.length,
+        id: this.idCount,
         todo: newTask.todo,
         priority: newTask.priority,
         deadline: `${newTask.deadline.split('-')[1]}-${newTask.deadline.split('-')[2].split('T')[0]} ${newTask.deadline.split('T')[1]}`,
@@ -79,6 +82,13 @@ export const useTaskStore = defineStore('tasks', {
       if (taskIndex === -1)
         return
       this.tasks[taskIndex].todo = taskNewContent
+    },
+
+    removeTaskByID(taskID) {
+      const taskIndex = this.tasks.findIndex(task => task.id === taskID)
+      if (taskIndex === -1)
+        return
+      this.tasks.splice(taskIndex, 1)
     },
   },
 })

@@ -4,7 +4,7 @@ const task = defineProps({
   item: Object,
 })
 
-const emit = defineEmits(['updateTodo'])
+const emit = defineEmits(['updateTodo', 'doneTask'])
 
 const isNormal = computed(() => {
   return task.item.priority === 1
@@ -23,13 +23,19 @@ const todoContent = ref(task.item.todo)
 watch(todoContent, (newValue) => {
   emit('updateTodo', task.item.id, newValue)
 })
+
+const doneTask = () => {
+  emit('doneTask', task.item.id)
+}
 </script>
 
 <template>
   <div class="task-card-container">
     <div class="task-card-content is-flex is-flex-direction-row">
-      <div class="task-card-icon">
-        <i id="icon" class="fa-regular fa-circle-notch" />
+      <div class="task-card-icon" @click="doneTask">
+        <span class="icon has-text-success">
+          <i id="icon" class="fas fa-check-square" />
+        </span>
       </div>
       <div class="task-card-todo">
         <input v-model.lazy="todoContent" type="text" class="task-card-input">
@@ -79,7 +85,7 @@ watch(todoContent, (newValue) => {
 }
 
 #icon {
-  font-size: 20px;
+  font-size: 25px;
   margin-top: 8px;
 }
 
