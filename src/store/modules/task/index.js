@@ -61,6 +61,7 @@ export const useTaskStore = defineStore('tasks', {
         todo: newTask.todo,
         priority: newTask.priority,
         deadline: `${newTask.deadline.split('-')[1]}-${newTask.deadline.split('-')[2].split('T')[0]} ${newTask.deadline.split('T')[1]}`,
+        group: newTask.group,
       })
       this.sortByPriority()
     },

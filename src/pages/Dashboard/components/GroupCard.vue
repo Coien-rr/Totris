@@ -31,7 +31,7 @@ const updateGroupName = (newName) => {
     <GroupCardHeader :task-count="taskCount" :group-name="group.item.name" :group-icon="group.item.icon" @group-name-update="updateGroupName" />
     <div class="card-content">
       <TaskCard v-for="task in taskStore.getTaskByGroup(group.item.name)" :key="task.id" :item="task" />
-      <AddTaskCard />
+      <AddTaskCard :group-name="group.item.name" />
     </div>
   </div>
 </template>

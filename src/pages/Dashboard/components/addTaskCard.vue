@@ -3,12 +3,15 @@ import { computed, reactive, ref } from 'vue'
 import SelectPriority from './selectPriority.vue'
 import { useTaskStore } from '~/store'
 
+const group = defineProps(['groupName'])
+
 const taskStore = useTaskStore()
 
 const newTask = reactive({
   todo: '',
   priority: 1,
   deadline: `${new Date().toISOString().slice(0, 16)}`,
+  group: group.groupName,
 })
 
 const isReSet = ref(true)
