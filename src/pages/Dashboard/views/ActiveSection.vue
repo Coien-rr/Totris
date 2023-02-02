@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-const activeTasks = ref(0)
+import { useTaskStore } from '~/store'
+const taskStore = useTaskStore()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const activeTasks = ref(0)
       </span>
     </button>
     <p id="taskMsg">
-      <b>{{ activeTasks }} </b>
+      <b>{{ taskStore.getTaskCount }} </b>
       ACTIVE TASKS 🎯
     </p>
   </section>
