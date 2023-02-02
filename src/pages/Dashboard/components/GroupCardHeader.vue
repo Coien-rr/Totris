@@ -1,17 +1,19 @@
 <script setup>
 defineProps({
   taskCount: Number,
+  groupName: String,
+  groupIcon: String,
 })
 </script>
 
 <template>
   <div class="card-header">
     <div class="card-header-icon is-inline-flex">
-      📬
+      {{ groupIcon }}
     </div>
     <div class="card-header-content is-flex is-flex-direction-column">
       <div class="card-header-name is-inline-flex">
-        Totris tasks
+        {{ groupName }}
       </div>
       <div class="card-header-count is-flex">
         {{ taskCount }} tasks 🧩

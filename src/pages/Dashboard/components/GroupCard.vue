@@ -5,19 +5,26 @@ import GroupCardHeader from '../components/GroupCardHeader.vue'
 import AddTaskCard from '../components/addTaskCard.vue'
 import { useTaskStore } from '~/store'
 
+// NOTE: group is a Props Object, item is a property of group
+const group = defineProps({
+  item: Object,
+})
+
 const taskStore = useTaskStore()
 // HACK: this store data is not changed with it's action methods
 // eslint-disable-next-line unused-imports/no-unused-vars
 const isSorted = computed(taskStore.tasks.sort((a, b) => {
   return b.priority - a.priority
 }))
+
+const taskCount = computed(() => taskStore.getTaskCountByGroup(group.item.name))
 </script>
 
 <template>
   <div class="card">
-    <GroupCardHeader :task-count="taskStore.getTaskCount" />
+    <GroupCardHeader :task-count="taskCount" :group-name="group.item.name" :group-icon="group.item.icon" />
     <div class="card-content">
-      <TaskCard v-for="task in taskStore.tasks" :key="task.id" :item="task" />
+      <TaskCard v-for="task in taskStore.getTaskByGroup(group.item.name)" :key="task.id" :item="task" />
       <AddTaskCard />
     </div>
   </div>
@@ -35,7 +42,7 @@ const isSorted = computed(taskStore.tasks.sort((a, b) => {
   min-width: 240px;
   box-sizing: border-box;
   margin-right: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: rgb(165 182 185 / 36%) 0px 32px 36px -30px, rgb(171 174 181 / 18%) 0px 8px 16px -4px;
 }
 

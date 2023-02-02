@@ -1,25 +1,42 @@
 import { defineStore } from 'pinia'
 export const useTaskStore = defineStore('tasks', {
   state: () => ({
-    /** @type {{ todo: string, priority: number, deadline: string }[]} */
+    /** @type {{ todo: string, priority: number, deadline: string, group: string }[]} */
     tasks: [
       {
         id: 1,
         todo: 'testTask',
         priority: 1,
-        deadline: '01-31 23:00',
+        deadline: '02-11 23:00',
+        group: 'Dashboard',
       },
       {
         id: 2,
-        todo: 'finish taskCard',
-        priority: 2,
-        deadline: '01-31 23:30',
+        todo: 'add register',
+        priority: 1,
+        deadline: '02-11 23:30',
+        group: 'LoginPage',
       },
       {
         id: 3,
-        todo: 'add task store',
+        todo: 'add login',
+        priority: 2,
+        deadline: '02-11 23:59',
+        group: 'LoginPage',
+      },
+      {
+        id: 4,
+        todo: 'add task filter',
         priority: 3,
-        deadline: '01-31 23:59',
+        deadline: '02-11 23:59',
+        group: 'Dashboard',
+      },
+      {
+        id: 5,
+        todo: 'refactor task store',
+        priority: 1,
+        deadline: '02-11 23:59',
+        group: 'Dashboard',
       },
     ],
   }),
@@ -46,6 +63,14 @@ export const useTaskStore = defineStore('tasks', {
         deadline: `${newTask.deadline.split('-')[1]}-${newTask.deadline.split('-')[2].split('T')[0]} ${newTask.deadline.split('T')[1]}`,
       })
       this.sortByPriority()
+    },
+
+    getTaskByGroup(group) {
+      return this.tasks.filter(task => task.group === group)
+    },
+
+    getTaskCountByGroup(group) {
+      return this.tasks.filter(task => task.group === group).length
     },
   },
 })

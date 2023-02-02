@@ -1,6 +1,11 @@
 <script setup>
 import CategoryGroup from '../components/CategoryGroup.vue'
 import GroupCard from '../components/GroupCard.vue'
+import { useGroupStore } from '~/store'
+
+const groupStore = useGroupStore()
+
+// console.log(groupStore.groups)
 </script>
 
 <template>
@@ -15,8 +20,9 @@ import GroupCard from '../components/GroupCard.vue'
     </header>
     <main>
       <section class="group is-flex">
-        <GroupCard />
-        <GroupCard />
+        <GroupCard v-for="group in groupStore.groups" :key="group.id" :item="group" />
+        <!-- <GroupCard />
+        <GroupCard /> -->
       </section>
     </main>
   </div>
