@@ -50,8 +50,8 @@ npm run dev
 
 ## ✅ TODO
 
+- [x] add category management
 - [ ] add workplace management
-- [ ] add category management
 - [ ] add done task management
 - [ ] refactor task Card
 - [ ] add user management

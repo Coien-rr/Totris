@@ -1,6 +1,12 @@
 <script setup>
-import { useTaskStore } from '~/store'
+import { watch } from 'vue'
+import { useGroupStore, useTaskStore } from '~/store'
 const taskStore = useTaskStore()
+const groupStore = useGroupStore()
+
+watch(() => taskStore.getTaskCount, async () => {
+  await groupStore.storeGroup()
+})
 </script>
 
 <template>

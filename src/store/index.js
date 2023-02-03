@@ -5,6 +5,8 @@ import { useCategoryStore } from './modules/category'
 import { useGroupStore } from './modules/group'
 import { useTaskStore } from './modules/task'
 
+// localForage.localForageInit()
+
 const pinia = createPinia()
 
 pinia.use(piniaPluginPersistedstate)

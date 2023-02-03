@@ -25,7 +25,7 @@ watch(() => group.groupID, () => {
 const addNewTask = () => {
   if (isNewTaskTodoEmpty.value)
     return
-  taskStore.addTask(newTask)
+  taskStore.addNewTask(newTask)
   newTask.todo = ''
   newTask.priority = 1
   newTask.deadline = `${new Date().toISOString().slice(0, 16)}`
