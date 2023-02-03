@@ -8,7 +8,7 @@ const localCategories = useCategoryStore()
   <div class="is-flex is-11 is-offset-1 categories ">
     <div
       v-for="category in localCategories.categories" :key="category.id" class="category button" :class="{ active: category.isActive }"
-      @click="localCategories.switchGroup(category)"
+      @click="localCategories.switchCategory(category.id)"
     >
       {{ category.icon }} {{ category.name }}
     </div>

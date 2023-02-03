@@ -1,9 +1,19 @@
 <script setup>
+import { onMounted, onUpdated } from 'vue'
 import CategoryGroup from '../components/CategoryGroup.vue'
 import GroupCard from '../components/GroupCard.vue'
-import { useGroupStore } from '~/store'
+import { useCategoryStore, useGroupStore } from '~/store'
 
 const groupStore = useGroupStore()
+const categoryStore = useCategoryStore()
+
+onMounted(() => {
+  groupStore.initGroup(categoryStore.activeCategoryId)
+})
+
+onUpdated(async () => {
+  await groupStore.storeGroup()
+})
 
 const createNewGroup = () => {
   // console.log('create new group')

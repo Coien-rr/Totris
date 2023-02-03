@@ -1,46 +1,11 @@
 import { defineStore } from 'pinia'
+// import { useCategoryStore } from '../category'
 export const useTaskStore = defineStore('tasks', {
   state: () => ({
     /** @type { idCount:number } */
     idCount: 5,
     /** @type {{ todo: string, priority: number, deadline: string, groupID: string }[]} */
-    tasks: [
-      {
-        id: 1,
-        todo: 'testTask',
-        priority: 1,
-        deadline: '02-11 23:00',
-        groupID: 1,
-      },
-      {
-        id: 2,
-        todo: 'add register',
-        priority: 1,
-        deadline: '02-11 23:30',
-        groupID: 2,
-      },
-      {
-        id: 3,
-        todo: 'add login',
-        priority: 2,
-        deadline: '02-11 23:59',
-        groupID: 2,
-      },
-      {
-        id: 4,
-        todo: 'add task filter',
-        priority: 3,
-        deadline: '02-11 23:59',
-        groupID: 1,
-      },
-      {
-        id: 5,
-        todo: 'refactor task store',
-        priority: 1,
-        deadline: '02-11 23:59',
-        groupID: 1,
-      },
-    ],
+    tasks: [],
   }),
   persist: {
     key: 'my-tasks-key',
@@ -51,26 +16,59 @@ export const useTaskStore = defineStore('tasks', {
     },
   },
   actions: {
+
+    addTask(task) {
+      this.tasks.push({
+        id: task.id,
+        todo: task.todo,
+        priority: task.priority,
+        deadline: task.deadline,
+        groupID: task.groupID,
+      })
+    },
+
+    clearTasks() {
+      this.tasks = []
+    },
+
     sortByPriority() {
       this.tasks.sort((a, b) => {
         return b.priority - a.priority
       })
     },
 
-    addTask(newTask) {
+    addNewTask(newTask) {
       this.idCount++
+      // const categoryStore = useCategoryStore()
       this.tasks.push({
         id: this.idCount,
         todo: newTask.todo,
         priority: newTask.priority,
         deadline: `${newTask.deadline.split('-')[1]}-${newTask.deadline.split('-')[2].split('T')[0]} ${newTask.deadline.split('T')[1]}`,
         groupID: newTask.groupID,
+        // categoryId: categoryStore.activeCategoryId,
       })
       this.sortByPriority()
     },
 
     getTaskByGroupID(groupID) {
       return this.tasks.filter(task => task.groupID === groupID)
+    },
+
+    copyTaskByGroupID(groupID) {
+      const tasks = this.getTaskByGroupID(groupID)
+      const copyTasks = []
+      tasks.forEach((task) => {
+        const copyTask = {
+          id: task.id,
+          todo: task.todo,
+          priority: task.priority,
+          deadline: task.deadline,
+          groupID: task.groupID,
+        }
+        copyTasks.push(copyTask)
+      })
+      return copyTasks
     },
 
     getTaskCountByGroupID(groupID) {
