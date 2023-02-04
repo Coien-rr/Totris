@@ -1,30 +1,39 @@
 <script setup>
-import GroupItemCard from './GroupItemCard.vue'
+import GroupItemCard from './CategoryItemCard.vue'
+import AddGroupButton from './addCategoryButton.vue'
+import { useWorkplaceStore } from '~/store/modules/workplace'
+
+const currItem = defineProps({
+  workplace: Object,
+})
+
+const workplaceStore = useWorkplaceStore()
 </script>
 
 <template>
-  <!-- vue3页面 -->
   <div class="workplace-item-card">
     <div class="card-header">
       <span class="card-header-content">
-        📑 Content
+        {{ workplace.icon }} {{ workplace.name }}
       </span>
     </div>
     <div class="card-body is-flex">
-      <GroupItemCard />
-      <GroupItemCard />
+      <GroupItemCard v-for="category in workplaceStore.getWorkplaceById(currItem.workplace.id)" :key="category.id" :category="category" />
+      <div class="new-group-button">
+        <AddGroupButton />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .workplace-item-card {
-  height: 160px;
+  height: 180px;
   padding: 4px, 8px;
   border: 3px solid rgba(195, 198, 206, 0.5);
   border-radius: 20px;
   transition: 0.25s ease-out;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .workplace-item-card:hover {
@@ -38,6 +47,7 @@ import GroupItemCard from './GroupItemCard.vue'
   box-shadow: none;
   width: 100%;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .card-header-content {
@@ -50,5 +60,11 @@ import GroupItemCard from './GroupItemCard.vue'
 .card-body {
   height: 70%;
   padding-left: 10px;
+}
+
+.new-group-button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
 </style>

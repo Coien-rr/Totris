@@ -1,15 +1,20 @@
 <script setup>
-
+defineProps({
+  category: Object,
+})
 </script>
 
 <template>
   <div class="card">
     <h3 class="card__title">
-      🎯 Totris
+      {{ category.name }}
     </h3>
     <p class="card__content">
-      5 Active Tasks
+      <strong> 5 </strong>Tasks
     </p>
+    <div class="card__footer">
+      Active 🔥
+    </div>
     <div class="card__arrow">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
         <path
@@ -41,18 +46,21 @@
 }
 
 .card {
-  margin-bottom: 0.1em;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-bottom: 0.2em;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .card .card__content {
   color: var(--secondary-color);
-  font-size: 0.95rem;
+  font-size: 1.1rem;
 }
 
 .card__content {
-  margin-top: 0.5em;
+  display: flex;
+  margin-top: 0.3em;
+  justify-content: center;
+  /* padding-left: 1em; */
 }
 
 .card .card__title {
@@ -61,9 +69,14 @@
   font-weight: bold;
 }
 
-.card .card__date {
+.card .card__footer {
   color: #6e6b80;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.card__footer{
+  margin-top: 0.5em;;
 }
 
 .card .card__arrow {
