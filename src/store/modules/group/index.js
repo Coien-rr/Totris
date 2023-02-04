@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useTaskStore } from '../task'
 import { useCategoryStore } from '../category'
-import { localGroup } from '~/utils/localDataTool'
+import localGroup from '~/utils/localDataTool/group.js'
 export const useGroupStore = defineStore('groups', {
   state: () => ({
     /** @type { idCount:number } */

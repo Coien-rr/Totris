@@ -9,6 +9,7 @@ const groupStore = useGroupStore()
 const categoryStore = useCategoryStore()
 
 onMounted(() => {
+  console.log('init')
   groupStore.initGroup(categoryStore.activeCategoryId)
 })
 
@@ -33,11 +34,6 @@ const updateGroupName = (groupID, newName) => {
 <template>
   <div>
     <header id="tagHeader" class="is-flex">
-      <!-- <button id="wpButton" class="button">
-        <span class="icon is-small">
-          <i class="fa-solid fa-box-archive" />
-        </span>
-      </button> -->
       <ShowWorkplace />
       <CategoryGroup />
       <div class="addNewGroup">

@@ -1,30 +1,27 @@
 <script setup>
 import WorkplaceItemCard from './WorkplaceItemCard.vue'
+import { useWorkplaceStore } from '~/store/modules/workplace'
+
 defineProps({
   show: Boolean,
 })
 defineEmits(['close'])
+
+const workplaceStore = useWorkplaceStore()
 </script>
 
 <template>
   <Transition name="modal">
     <div v-if="show" class="modal-mask">
       <div class="modal-container">
-        <div class="modal-header">
+        <div class="modal-header is-flex">
           <h3>🎮 Workplace Manage</h3>
-        </div>
-
-        <div class="modal-body">
-          <WorkplaceItemCard />
-          <WorkplaceItemCard />
-          <WorkplaceItemCard />
-          <WorkplaceItemCard />
-        </div>
-
-        <div class="modal-footer">
-          <button class="button modal-default-button is-primary is-light" @click="$emit('close')">
+          <button class="button modal-default-button is-info is-light" @click="$emit('close')">
             Cancel
           </button>
+        </div>
+        <div class="modal-body">
+          <WorkplaceItemCard v-for="workplace in workplaceStore.workplaces" :key="workplace.id" :workplace="workplace" />
         </div>
       </div>
     </div>
@@ -54,6 +51,7 @@ defineEmits(['close'])
   transition: all 0.3s ease;
   border-radius: 15px;
   margin-top: 20px;
+  padding-bottom: 0px;
 }
 
 .modal-header{
@@ -61,12 +59,14 @@ defineEmits(['close'])
 }
 
 .modal-header h3 {
+  width: 100%;
   margin-top: 0;
   font-size: 2rem;
   font-weight: 600;
   width: 100%;
   text-align: center;
   color: #000;
+  padding-left: 80px;
 }
 
 .modal-body {
