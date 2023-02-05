@@ -1,20 +1,15 @@
 import localforage from 'localforage'
 
-function setStoreName() {
-  localforage.config({
-    storeName: 'workplaceStore',
-  })
-}
+const workplaceTable = 'workplaceTable'
 
 const localSetItem = (key, value) => {
-  setStoreName()
-  return localforage.setItem(key, value)
+  const workplaceKey = `${workplaceTable}/${key}`
+  return localforage.setItem(workplaceKey, value)
 }
 
 const getCategoryDataById = async (key) => {
-  setStoreName()
-  console.log('get category data by id')
-  return await localforage.getItem(key)
+  const workplaceKey = `${workplaceTable}/${key}`
+  return await localforage.getItem(workplaceKey)
 }
 
 export default { localSetItem, getCategoryDataById }
