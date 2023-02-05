@@ -7,6 +7,7 @@ import App from './App.vue'
 
 localforage.config({
   name: 'localTotris',
+  storeName: 'totris',
 })
 
 createApp(App)
