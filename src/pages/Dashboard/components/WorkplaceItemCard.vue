@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import GroupItemCard from './CategoryItemCard.vue'
 import AddGroupButton from './addCategoryButton.vue'
 import { useWorkplaceStore } from '~/store/modules/workplace'
@@ -15,6 +16,10 @@ const createNewCategory = () => {
   const categoryId = categoryStore.addNewCategory()
   workplaceStore.addNewCategoryToWorkplace(currItem.workplace.id, categoryId)
 }
+
+const isCategoryEmpty = computed(() => {
+  return workplaceStore.getWorkplaceById(currItem.workplace.id).length < 5
+})
 </script>
 
 <template>
@@ -26,7 +31,7 @@ const createNewCategory = () => {
     </div>
     <div class="card-body is-flex">
       <GroupItemCard v-for="category in workplaceStore.getWorkplaceById(currItem.workplace.id)" :key="category.id" :category="category" />
-      <div class="new-group-button" @click="createNewCategory">
+      <div v-if="isCategoryEmpty" class="new-group-button" @click="createNewCategory">
         <AddGroupButton />
       </div>
     </div>
