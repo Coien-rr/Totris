@@ -97,7 +97,6 @@ export const useWorkplaceStore = defineStore('workplaces', {
     },
 
     createNewWorkplace() {
-      console.log('create new workplace')
       this.workplaces.push({
         id: this.workplaces.length + 1,
         name: 'New workplace',
@@ -105,7 +104,6 @@ export const useWorkplaceStore = defineStore('workplaces', {
         categories: [],
         activeCategoryIndex: -1,
       })
-      console.log(this.workplaces)
     },
   },
 })
