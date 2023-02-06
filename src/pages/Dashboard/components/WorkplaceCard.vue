@@ -6,9 +6,14 @@ import { useWorkplaceStore } from '~/store/modules/workplace'
 defineProps({
   show: Boolean,
 })
-defineEmits(['close'])
+const emit = defineEmits(['close'])
 
 const workplaceStore = useWorkplaceStore()
+
+const switchWorkplace = (workplaceId) => {
+  workplaceStore.switchWorkplace(workplaceId)
+  emit('close')
+}
 </script>
 
 <template>
@@ -22,8 +27,8 @@ const workplaceStore = useWorkplaceStore()
           </button>
         </div>
         <div class="modal-body">
-          <WorkplaceItemCard v-for="workplace in workplaceStore.workplaces" :key="workplace.id" :workplace="workplace" @click="workplaceStore.switchWorkplace(workplace.id)" />
-          <div class="add-workplace">
+          <WorkplaceItemCard v-for="workplace in workplaceStore.workplaces" :key="workplace.id" :workplace="workplace" @click="switchWorkplace(workplace.id)" />
+          <div class="add-workplace" @click="workplaceStore.createNewWorkplace">
             <AddWorkplaceButton />
           </div>
         </div>

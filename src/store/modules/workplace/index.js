@@ -11,6 +11,7 @@ export const useWorkplaceStore = defineStore('workplaces', {
         categories: [
           { id: 1, name: 'Totris', icon: '🎯', isActive: false },
         ],
+        activeCategoryIndex: 0,
       },
       // {
       //   id: 2,
@@ -48,15 +49,19 @@ export const useWorkplaceStore = defineStore('workplaces', {
   actions: {
     async initWorkplace() {
       const categoryStore = useCategoryStore()
-      await categoryStore.initCategories(this.copyCategories())
+      await categoryStore.initCategories(this.workplaces[this.activeWorkplaceIndex].activeCategoryIndex, this.copyCategories())
     },
 
     async switchWorkplace(workplaceId) {
-      // const workplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
       if (this.workplaces[this.activeWorkplaceIndex].id === workplaceId)
         return
+
+      // store old workplace's active category index when switching workplace
       const categoryStore = useCategoryStore()
-      await categoryStore.initCategories(workplaceId)
+      this.workplaces[this.activeWorkplaceIndex].activeCategoryIndex = categoryStore.activeCategoryIndex
+
+      this.activeWorkplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
+      await this.initWorkplace()
     },
 
     getWorkplaceById(workplaceId) {
@@ -87,6 +92,20 @@ export const useWorkplaceStore = defineStore('workplaces', {
         icon: '🌟',
         isActive: false,
       })
+      if (this.workplaces[workplaceIndex].activeCategoryIndex === -1)
+        this.workplaces[workplaceIndex].activeCategoryIndex = 0
+    },
+
+    createNewWorkplace() {
+      console.log('create new workplace')
+      this.workplaces.push({
+        id: this.workplaces.length + 1,
+        name: 'New workplace',
+        icon: '📑',
+        categories: [],
+        activeCategoryIndex: -1,
+      })
+      console.log(this.workplaces)
     },
   },
 })

@@ -50,6 +50,10 @@ export const useGroupStore = defineStore('groups', {
       })
     },
 
+    clearGroups() {
+      this.groups = []
+    },
+
     addNewGroup() {
       this.idCount++
       const categoryStore = useCategoryStore()
@@ -57,9 +61,8 @@ export const useGroupStore = defineStore('groups', {
         id: this.idCount,
         name: 'New Group',
         icon: '📬',
-        categoryId: categoryStore.activeCategoryId,
+        categoryId: categoryStore.categories[categoryStore.activeCategoryIndex].id,
       })
-
     },
 
     updateGroupNameById(id, newName) {
