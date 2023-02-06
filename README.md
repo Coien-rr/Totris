@@ -51,9 +51,11 @@ npm run dev
 ## ✅ TODO
 
 - [x] add category management
-- [ ] add workplace management
+- [x] add workplace management
 - [ ] add done task management
+- [ ] generate random icon
 - [ ] add icon choice
+- [ ] use related info instead deadline
 - [ ] refactor task Card
 - [ ] add user management
 - [ ] add drag feature
