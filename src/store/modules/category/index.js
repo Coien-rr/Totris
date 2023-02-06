@@ -7,7 +7,7 @@ export const useCategoryStore = defineStore('categories', {
     /** @type {{ name: string, icon: string, isActive: boolean }[]} */
     categories: [],
     /** @type { activeCategory: number } */
-    activeCategoryId: 1,
+    activeCategoryIndex: 0,
   }),
   persist: {
     key: 'my-categories-key',
@@ -35,13 +35,13 @@ export const useCategoryStore = defineStore('categories', {
         c.isActive = c.id === categoryId
       })
 
-      this.activeCategoryId = categoryId
-
+      this.activeCategoryIndex = this.categories.findIndex(c => c.id === categoryId)
       const groupStore = useGroupStore()
       groupStore.switchToCategory(categoryId)
     },
 
-    async initCategories(categoriesData) {
+    async initCategories(activeCategoryIndex, categoriesData) {
+      this.activeCategoryIndex = activeCategoryIndex
       this.clearCategories()
       categoriesData.forEach((c) => {
         const category = {
@@ -52,6 +52,13 @@ export const useCategoryStore = defineStore('categories', {
         }
         this.categories.push(category)
       })
+
+      // clear groups card
+      const groupStore = useGroupStore()
+      groupStore.clearGroups()
+
+      if (this.activeCategoryIndex >= 0)
+        this.switchCategory(this.categories[this.activeCategoryIndex].id)
     },
   },
 })
