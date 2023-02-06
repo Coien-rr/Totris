@@ -2,9 +2,9 @@ import localforage from 'localforage'
 
 const workplaceTable = 'workplaceTable'
 
-const localSetItem = (key, value) => {
+const localSetItem = async (key, value) => {
   const workplaceKey = `${workplaceTable}/${key}`
-  return localforage.setItem(workplaceKey, value)
+  return await localforage.setItem(workplaceKey, value)
 }
 
 const getCategoryDataById = async (key) => {
@@ -12,4 +12,4 @@ const getCategoryDataById = async (key) => {
   return await localforage.getItem(workplaceKey)
 }
 
-export default { localSetItem, getCategoryDataById }
+export { localSetItem, getCategoryDataById }

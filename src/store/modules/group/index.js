@@ -5,7 +5,7 @@ import { getCategoryById, localSetItem } from '~/utils/localDataTool/category.js
 export const useGroupStore = defineStore('groups', {
   state: () => ({
     /** @type { idCount:number } */
-    idCount: 2,
+    idCount: 0,
     /** @type {{ id:number, name: string, icon: string, categoryId: number}[]} */
     groups: [
       {
@@ -59,6 +59,7 @@ export const useGroupStore = defineStore('groups', {
         icon: '📬',
         categoryId: categoryStore.activeCategoryId,
       })
+
     },
 
     updateGroupNameById(id, newName) {

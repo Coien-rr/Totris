@@ -2,12 +2,19 @@
 import GroupItemCard from './CategoryItemCard.vue'
 import AddGroupButton from './addCategoryButton.vue'
 import { useWorkplaceStore } from '~/store/modules/workplace'
+import { useCategoryStore } from '~/store/modules/category'
 
 const currItem = defineProps({
   workplace: Object,
 })
 
 const workplaceStore = useWorkplaceStore()
+const categoryStore = useCategoryStore()
+
+const createNewCategory = () => {
+  const categoryId = categoryStore.addNewCategory()
+  workplaceStore.addNewCategoryToWorkplace(currItem.workplace.id, categoryId)
+}
 </script>
 
 <template>
@@ -19,7 +26,7 @@ const workplaceStore = useWorkplaceStore()
     </div>
     <div class="card-body is-flex">
       <GroupItemCard v-for="category in workplaceStore.getWorkplaceById(currItem.workplace.id)" :key="category.id" :category="category" />
-      <div class="new-group-button">
+      <div class="new-group-button" @click="createNewCategory">
         <AddGroupButton />
       </div>
     </div>
