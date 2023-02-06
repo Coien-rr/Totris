@@ -1,14 +1,15 @@
 <script setup>
 import { onMounted, onUpdated } from 'vue'
+import ShowWorkplace from '../components/showWorkplace.vue'
 import CategoryGroup from '../components/CategoryGroup.vue'
 import GroupCard from '../components/GroupCard.vue'
-import { useCategoryStore, useGroupStore } from '~/store'
+import { useGroupStore, useWorkplaceStore } from '~/store'
 
 const groupStore = useGroupStore()
-const categoryStore = useCategoryStore()
+const workplaceStore = useWorkplaceStore()
 
-onMounted(() => {
-  groupStore.initGroup(categoryStore.activeCategoryId)
+onMounted(async () => {
+  workplaceStore.initWorkplace()
 })
 
 onUpdated(async () => {
@@ -32,11 +33,7 @@ const updateGroupName = (groupID, newName) => {
 <template>
   <div>
     <header id="tagHeader" class="is-flex">
-      <button id="wpButton" class="button">
-        <span class="icon is-small">
-          <i class="fa-solid fa-box-archive" />
-        </span>
-      </button>
+      <ShowWorkplace />
       <CategoryGroup />
       <div class="addNewGroup">
         <button class="button is-primary" @click="createNewGroup">
@@ -70,21 +67,6 @@ const updateGroupName = (groupID, newName) => {
   right: 3%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-}
-
-#wpButton {
-  border-radius: 7px;
-  z-index: 3;
-  box-shadow: rgb(142 149 173 / 50%) 0px 2px 6px 0px, rgb(255 255 255 / 81%) 1px 1px 1px 0px inset, rgb(226 228 233) -1px -1px 1px 0px inset;
-  position: absolute;
-  left: 3%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  background-color: rgb(237, 240, 244);
-}
-
-#wpButton:hover {
-  background-color: rgb(255, 255, 255);
 }
 
 .group {

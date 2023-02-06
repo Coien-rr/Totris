@@ -1,14 +1,18 @@
 import localforage from 'localforage'
 
-localforage.config({
-  storeName: 'groupStore',
-})
+function setStoreName() {
+  localforage.config({
+    storeName: 'groupStore',
+  })
+}
 
 const localSetItem = (key, value) => {
+  setStoreName()
   localforage.setItem(key, value)
 }
 
 const getGroupDataById = async (key) => {
+  setStoreName()
   return await localforage.getItem(key)
 }
 

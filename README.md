@@ -53,6 +53,7 @@ npm run dev
 - [x] add category management
 - [ ] add workplace management
 - [ ] add done task management
+- [ ] add icon choice
 - [ ] refactor task Card
 - [ ] add user management
 - [ ] add drag feature

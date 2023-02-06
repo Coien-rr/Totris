@@ -1,15 +1,15 @@
 import localforage from 'localforage'
 
-localforage.config({
-  storeName: 'categoryStore',
-})
-
-const categoryStoreInit = () => {
-  console.log('categoryStoreInit!')
-}
+const categoryTable = 'categoryTable'
 
 const localSetItem = (key, value) => {
-  localforage.setItem(`Category-${key}`, value)
+  const categoryKey = `${categoryTable}/${key}`
+  localforage.setItem(categoryKey, value)
 }
 
-export default { categoryStoreInit, localSetItem }
+const getCategoryById = async (key) => {
+  const categoryKey = `${categoryTable}/${key}`
+  return await localforage.getItem(categoryKey)
+}
+
+export { getCategoryById, localSetItem }
