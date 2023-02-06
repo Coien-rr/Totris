@@ -1,16 +1,11 @@
 import { defineStore } from 'pinia'
 import { useGroupStore } from '../group'
-// import localWorkplace from '~/utils/localDataTool/workplace.js'
-// import localforage from 'localforage'
 export const useCategoryStore = defineStore('categories', {
   state: () => ({
     /** @type { idCount:number } */
-    idCount: 2,
+    idCount: 7,
     /** @type {{ name: string, icon: string, isActive: boolean }[]} */
-    categories: [
-      { id: 1, name: 'Totris', icon: '🎯', isActive: 'true' },
-      { id: 2, name: 'todoServer', icon: '🗃️', isActive: 'false' },
-    ],
+    categories: [],
     /** @type { activeCategory: number } */
     activeCategoryId: 1,
   }),
@@ -25,12 +20,14 @@ export const useCategoryStore = defineStore('categories', {
       this.categories = []
     },
 
-    addCategory(category) {
+    addNewCategory() {
       this.categories.push({
-        name: category.name,
-        icon: category.icon,
-        isActive: 'false',
+        id: this.idCount++,
+        name: 'Category',
+        icon: '🌟',
+        isActive: false,
       })
+      return this.idCount
     },
 
     switchCategory(categoryId) {
@@ -44,13 +41,17 @@ export const useCategoryStore = defineStore('categories', {
       groupStore.switchToCategory(categoryId)
     },
 
-    // async getCategoriesByWorkplaceId(workplaceId) {
-    //   // console.log('get')
-    //   localforage.config({
-    //     storeName: 'workplaceStore',
-    //   })
-    //   const groupsData = await localforage.getItem(workplaceId)
-    //   console.log(groupsData)
-    // },
+    async initCategories(categoriesData) {
+      this.clearCategories()
+      categoriesData.forEach((c) => {
+        const category = {
+          id: c.id,
+          name: c.name,
+          icon: c.icon,
+          isActive: c.isActive,
+        }
+        this.categories.push(category)
+      })
+    },
   },
 })

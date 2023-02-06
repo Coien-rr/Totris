@@ -1,5 +1,6 @@
 <script setup>
 import WorkplaceItemCard from './WorkplaceItemCard.vue'
+import AddWorkplaceButton from './addWorkplaceButton.vue'
 import { useWorkplaceStore } from '~/store/modules/workplace'
 
 defineProps({
@@ -21,7 +22,10 @@ const workplaceStore = useWorkplaceStore()
           </button>
         </div>
         <div class="modal-body">
-          <WorkplaceItemCard v-for="workplace in workplaceStore.workplaces" :key="workplace.id" :workplace="workplace" />
+          <WorkplaceItemCard v-for="workplace in workplaceStore.workplaces" :key="workplace.id" :workplace="workplace" @click="workplaceStore.switchWorkplace(workplace.id)" />
+          <div class="add-workplace">
+            <AddWorkplaceButton />
+          </div>
         </div>
       </div>
     </div>
@@ -106,5 +110,11 @@ const workplaceStore = useWorkplaceStore()
 .modal-leave-to .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+.add-workplace {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 </style>

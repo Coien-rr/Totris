@@ -3,10 +3,14 @@ import { ref } from 'vue'
 import WorkplaceCard from './WorkplaceCard.vue'
 
 const showModal = ref(false)
+
+const showWorkplace = () => {
+  showModal.value = true
+}
 </script>
 
 <template>
-  <button id="wpButton" class="button" @click="showModal = true">
+  <button id="wpButton" class="button" @click="showWorkplace">
     <span class="icon is-small">
       <i class="fa-solid fa-box-archive" />
     </span>
