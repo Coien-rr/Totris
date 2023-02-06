@@ -1,4 +1,5 @@
 <script setup>
+import { computed, defineEmits, defineProps } from 'vue'
 import WorkplaceItemCard from './WorkplaceItemCard.vue'
 import AddWorkplaceButton from './addWorkplaceButton.vue'
 import { useWorkplaceStore } from '~/store/modules/workplace'
@@ -14,6 +15,10 @@ const switchWorkplace = (workplaceId) => {
   workplaceStore.switchWorkplace(workplaceId)
   emit('close')
 }
+
+const isWorkplaceEmpty = computed(() => {
+  return workplaceStore.workplaces.length < 4
+})
 </script>
 
 <template>
@@ -28,7 +33,7 @@ const switchWorkplace = (workplaceId) => {
         </div>
         <div class="modal-body">
           <WorkplaceItemCard v-for="workplace in workplaceStore.workplaces" :key="workplace.id" :workplace="workplace" @click="switchWorkplace(workplace.id)" />
-          <div class="add-workplace" @click="workplaceStore.createNewWorkplace">
+          <div v-if="isWorkplaceEmpty" class="add-workplace" @click="workplaceStore.createNewWorkplace">
             <AddWorkplaceButton />
           </div>
         </div>

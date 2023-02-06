@@ -3,14 +3,12 @@ import { onMounted, onUpdated } from 'vue'
 import ShowWorkplace from '../components/showWorkplace.vue'
 import CategoryGroup from '../components/CategoryGroup.vue'
 import GroupCard from '../components/GroupCard.vue'
-import { useCategoryStore, useGroupStore, useWorkplaceStore } from '~/store'
+import { useGroupStore, useWorkplaceStore } from '~/store'
 
 const groupStore = useGroupStore()
-const categoryStore = useCategoryStore()
 const workplaceStore = useWorkplaceStore()
 
 onMounted(async () => {
-  console.log('init')
   workplaceStore.initWorkplace()
 })
 
