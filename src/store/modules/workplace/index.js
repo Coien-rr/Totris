@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useCategoryStore } from '../category'
+import { randomEmoji } from '~/utils/randomEmoji'
 export const useWorkplaceStore = defineStore('workplaces', {
   state: () => ({
     /** @type {{ id: number, name: string, icon: string}[]} */
@@ -104,6 +105,23 @@ export const useWorkplaceStore = defineStore('workplaces', {
         categories: [],
         activeCategoryIndex: -1,
       })
+    },
+
+    updateWorkplaceIconById(workplaceId) {
+      const workplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
+      this.workplaces[workplaceIndex].icon = randomEmoji()
+    },
+
+    updateWorkplaceNameById(workplaceId, newName) {
+      const workplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
+      this.workplaces[workplaceIndex].name = newName
+    },
+
+    async updateCategoryNameById(workplaceId, categoryId, newName) {
+      const workplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
+      const categoryIndex = this.workplaces[workplaceIndex].categories.findIndex(c => c.id === categoryId)
+      this.workplaces[workplaceIndex].categories[categoryIndex].name = newName
+      await this.initWorkplace()
     },
   },
 })

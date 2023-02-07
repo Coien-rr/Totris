@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import { useGroupStore } from '../group'
+import { useWorkplaceStore } from '../workplace'
+import { randomEmoji } from '~/utils/randomEmoji'
 export const useCategoryStore = defineStore('categories', {
   state: () => ({
     /** @type { idCount:number } */
@@ -36,6 +38,8 @@ export const useCategoryStore = defineStore('categories', {
       })
 
       this.activeCategoryIndex = this.categories.findIndex(c => c.id === categoryId)
+      const workplaceStore = useWorkplaceStore()
+      workplaceStore.workplaces[workplaceStore.activeWorkplaceIndex].activeCategoryIndex = this.activeCategoryIndex
       const groupStore = useGroupStore()
       groupStore.switchToCategory(categoryId)
     },
@@ -59,6 +63,15 @@ export const useCategoryStore = defineStore('categories', {
 
       if (this.activeCategoryIndex >= 0)
         this.switchCategory(this.categories[this.activeCategoryIndex].id)
+    },
+
+    updateCategoryIconById(categoryId) {
+      const newEmoji = randomEmoji()
+      const category = this.categories.find(c => c.id === categoryId)
+      category.icon = newEmoji
+      const workplaceStore = useWorkplaceStore()
+      const categoryIndex = workplaceStore.workplaces[workplaceStore.activeWorkplaceIndex].categories.findIndex(c => c.id === categoryId)
+      workplaceStore.workplaces[workplaceStore.activeWorkplaceIndex].categories[categoryIndex].icon = newEmoji
     },
   },
 })

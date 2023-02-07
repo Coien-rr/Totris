@@ -1,14 +1,21 @@
 <script setup>
-defineProps({
+import { ref, watch } from 'vue'
+const item = defineProps({
   category: Object,
+})
+
+const emit = defineEmits(['categoryNameUpdate'])
+
+const categoryName = ref(item.category.name)
+
+watch(() => categoryName.value, (newVal) => {
+  emit('categoryNameUpdate', newVal, item.category.id)
 })
 </script>
 
 <template>
   <div class="card">
-    <h3 class="card__title">
-      {{ category.name }}
-    </h3>
+    <input v-model.lazy="categoryName" type="text" class="card__title" @click.stop="">
     <p class="card__content">
       <strong> 5 </strong>Tasks
     </p>
@@ -67,6 +74,10 @@ defineProps({
   padding: 0;
   font-size: 1.3rem;
   font-weight: bold;
+  cursor: text;
+  border: none;
+  background: transparent;
+  outline: none;
 }
 
 .card .card__footer {
