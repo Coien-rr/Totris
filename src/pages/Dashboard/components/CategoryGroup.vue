@@ -1,16 +1,23 @@
 <script setup>
 import { useCategoryStore } from '~/store'
 
-const localCategories = useCategoryStore()
+const categoryStore = useCategoryStore()
+
+const updateCategoryIconById = (categoryId) => {
+  categoryStore.updateCategoryIconById(categoryId)
+}
 </script>
 
 <template>
   <div class="is-flex is-11 is-offset-1 categories ">
     <div
-      v-for="category in localCategories.categories" :key="category.id" class="category button" :class="{ active: category.isActive }"
-      @click="localCategories.switchCategory(category.id)"
+      v-for="category in categoryStore.categories" :key="category.id" class="category button" :class="{ active: category.isActive }"
+      @click="categoryStore.switchCategory(category.id)"
     >
-      {{ category.icon }} {{ category.name }}
+      <span @click.stop="updateCategoryIconById(category.id)">
+        {{ category.icon }}
+      </span>
+      {{ category.name }}
     </div>
   </div>
 </template>
