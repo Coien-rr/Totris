@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import GroupItemCard from './CategoryItemCard.vue'
 import AddGroupButton from './addCategoryButton.vue'
 import { useWorkplaceStore } from '~/store/modules/workplace'
@@ -8,6 +8,8 @@ import { useCategoryStore } from '~/store/modules/category'
 const currItem = defineProps({
   workplace: Object,
 })
+
+const workplaceName = ref(currItem.workplace.name)
 
 const workplaceStore = useWorkplaceStore()
 const categoryStore = useCategoryStore()
@@ -24,6 +26,10 @@ const isCategoryEmpty = computed(() => {
 const updateWorkplaceIcon = () => {
   workplaceStore.updateWorkplaceIconById(currItem.workplace.id)
 }
+
+watch(() => workplaceName.value, (newValue) => {
+  workplaceStore.updateWorkplaceNameById(currItem.workplace.id, newValue)
+})
 </script>
 
 <template>
@@ -37,7 +43,8 @@ const updateWorkplaceIcon = () => {
           {{ workplace.icon }}
         </div>
         <div class="card-header-content-name">
-          {{ workplace.name }}
+          <!-- NOTE: use @click.stop to prevent click event from propagating to parent -->
+          <input v-model.lazy="workplaceName" type="text" class="workplace-input" @click.stop="">
         </div>
       </div>
     </div>
@@ -76,7 +83,7 @@ const updateWorkplaceIcon = () => {
 
 .card-header-content {
   display: flex;
-  left: 50%;
+  justify-content: center;
   margin-top: 3px;
   font-size: 25px;
   font-weight: 600;
@@ -85,6 +92,22 @@ const updateWorkplaceIcon = () => {
 .card-header-content-icon{
   margin-right: 10px;
   cursor: default;
+}
+
+.card-header-content-name {
+  display: flex;
+  width: 50%;
+}
+
+.workplace-input {
+  /* display: flex; */
+  width: 100%;
+  font-size: 25px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  justify-content: center;
 }
 
 .card-body {

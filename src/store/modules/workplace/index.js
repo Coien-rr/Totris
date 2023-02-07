@@ -111,5 +111,10 @@ export const useWorkplaceStore = defineStore('workplaces', {
       const workplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
       this.workplaces[workplaceIndex].icon = randomEmoji()
     },
+
+    updateWorkplaceNameById(workplaceId, newName) {
+      const workplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
+      this.workplaces[workplaceIndex].name = newName
+    },
   },
 })
