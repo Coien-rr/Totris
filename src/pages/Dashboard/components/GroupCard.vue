@@ -26,6 +26,7 @@ const updateGroupName = (newName) => {
 }
 
 const updateGroupIcon = () => {
+  // console.log('group');
   emit('groupIconUpdate', group.item.id)
 }
 

@@ -20,17 +20,26 @@ const createNewCategory = () => {
 const isCategoryEmpty = computed(() => {
   return workplaceStore.getWorkplaceById(currItem.workplace.id).length < 5
 })
+
+const updateWorkplaceIcon = () => {
+  workplaceStore.updateWorkplaceIconById(currItem.workplace.id)
+}
 </script>
 
 <template>
   <div class="workplace-item-card">
     <div class="card-header">
-      <span class="card-header-content">
+      <div class="card-header-content">
         <!-- TODO: feature: generate random icon  -->
         <!-- TODO: feature: change workplace name   -->
         <!-- NOTE: use @click.stop to prevent click event from propagating to parent -->
-        {{ workplace.icon }} {{ workplace.name }}
-      </span>
+        <div class="card-header-content-icon" @click.stop="updateWorkplaceIcon">
+          {{ workplace.icon }}
+        </div>
+        <div class="card-header-content-name">
+          {{ workplace.name }}
+        </div>
+      </div>
     </div>
     <div class="card-body is-flex">
       <GroupItemCard v-for="category in workplaceStore.getWorkplaceById(currItem.workplace.id)" :key="category.id" :category="category" />
@@ -66,10 +75,16 @@ const isCategoryEmpty = computed(() => {
 }
 
 .card-header-content {
+  display: flex;
   left: 50%;
   margin-top: 3px;
   font-size: 25px;
   font-weight: 600;
+}
+
+.card-header-content-icon{
+  margin-right: 10px;
+  cursor: default;
 }
 
 .card-body {

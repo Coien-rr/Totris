@@ -74,7 +74,7 @@ export const useGroupStore = defineStore('groups', {
     },
 
     updateGroupIconById(id) {
-      const groupIndex = this.groups.findIndex(group => group.id === id)
+      const groupIndex = this.groups.findIndex(gproup => group.id === id)
       if (groupIndex === -1)
         return
       this.groups[groupIndex].icon = randomEmoji()
