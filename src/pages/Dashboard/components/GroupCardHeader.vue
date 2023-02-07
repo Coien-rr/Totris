@@ -6,18 +6,22 @@ const props = defineProps({
   groupIcon: String,
 })
 
-const emit = defineEmits(['groupNameUpdate'])
+const emit = defineEmits(['groupNameUpdate', 'groupIconUpdate'])
 
 const groupName = ref(props.groupName)
 
 watch(() => groupName.value, (newVal) => {
   emit('groupNameUpdate', newVal)
 })
+
+function freshGroupIcon() {
+  emit('groupIconUpdate')
+}
 </script>
 
 <template>
   <div class="card-header">
-    <div class="card-header-icon is-inline-flex">
+    <div class="card-header-icon is-inline-flex" @click="freshGroupIcon">
       {{ groupIcon }}
     </div>
     <div class="card-header-content is-flex is-flex-direction-column">

@@ -10,7 +10,7 @@ const group = defineProps({
   item: Object,
 })
 
-const emit = defineEmits(['groupNameUpdate'])
+const emit = defineEmits(['groupNameUpdate', 'groupIconUpdate'])
 
 const taskStore = useTaskStore()
 // HACK: this store data is not changed with it's action methods
@@ -25,6 +25,10 @@ const updateGroupName = (newName) => {
   emit('groupNameUpdate', group.item.id, newName)
 }
 
+const updateGroupIcon = () => {
+  emit('groupIconUpdate', group.item.id)
+}
+
 const updateTodo = (taskID, todoNewContent) => {
   taskStore.updateTaskByID(taskID, todoNewContent)
 }
@@ -36,7 +40,7 @@ const doneTodo = (taskID) => {
 
 <template>
   <div class="card">
-    <GroupCardHeader :task-count="taskCount" :group-name="group.item.name" :group-icon="group.item.icon" @group-name-update="updateGroupName" />
+    <GroupCardHeader :task-count="taskCount" :group-name="group.item.name" :group-icon="group.item.icon" @group-name-update="updateGroupName" @group-icon-update="updateGroupIcon" />
     <div class="card-content">
       <TaskCard v-for="task in taskStore.getTaskByGroupID(group.item.id)" :key="task.id" :item="task" @update-todo="updateTodo" @done-task="doneTodo" />
       <AddTaskCard :group-i-d="group.item.id" />

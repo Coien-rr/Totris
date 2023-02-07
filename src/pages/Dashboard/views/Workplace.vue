@@ -28,6 +28,10 @@ const createNewGroup = () => {
 const updateGroupName = (groupID, newName) => {
   groupStore.updateGroupNameById(groupID, newName)
 }
+
+function updateGroupIcon(groupID) {
+  groupStore.updateGroupIconById(groupID)
+}
 </script>
 
 <template>
@@ -45,7 +49,7 @@ const updateGroupName = (groupID, newName) => {
     </header>
     <main>
       <section class="group is-flex">
-        <GroupCard v-for="group in groupStore.groups" :key="group.id" :item="group" @group-name-update="updateGroupName" />
+        <GroupCard v-for="group in groupStore.groups" :key="group.id" :item="group" @group-name-update="updateGroupName" @group-icon-update="updateGroupIcon" />
       </section>
     </main>
   </div>

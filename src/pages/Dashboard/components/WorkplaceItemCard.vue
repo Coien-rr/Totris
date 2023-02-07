@@ -26,6 +26,9 @@ const isCategoryEmpty = computed(() => {
   <div class="workplace-item-card">
     <div class="card-header">
       <span class="card-header-content">
+        <!-- TODO: feature: generate random icon  -->
+        <!-- TODO: feature: change workplace name   -->
+        <!-- NOTE: use @click.stop to prevent click event from propagating to parent -->
         {{ workplace.icon }} {{ workplace.name }}
       </span>
     </div>
