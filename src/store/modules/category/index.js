@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useGroupStore } from '../group'
+import { useWorkplaceStore } from '../workplace'
 export const useCategoryStore = defineStore('categories', {
   state: () => ({
     /** @type { idCount:number } */
@@ -36,6 +37,8 @@ export const useCategoryStore = defineStore('categories', {
       })
 
       this.activeCategoryIndex = this.categories.findIndex(c => c.id === categoryId)
+      const workplaceStore = useWorkplaceStore()
+      workplaceStore.workplaces[workplaceStore.activeWorkplaceIndex].activeCategoryIndex = this.activeCategoryIndex
       const groupStore = useGroupStore()
       groupStore.switchToCategory(categoryId)
     },
