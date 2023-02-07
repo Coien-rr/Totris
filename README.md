@@ -1,4 +1,6 @@
-<h1 align="center">Welcome to Totris 👋</h1>
+<h1 align="center">
+  Welcome to Totris 👋
+</h1>
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.33-blue.svg?cacheSeconds=2592000" />
@@ -17,7 +19,11 @@
 ### ✨ [**Demo**](https://coien-rr.github.io/Totris)
 
 <p align="center">
-  <img width="700" src="https://user-images.githubusercontent.com/83146518/216296846-947bb43e-2882-45bf-b351-0283abe09fe9.png" alt="Toris Demo"/>
+  <img width="700" src="https://user-images.githubusercontent.com/83146518/216296846-947bb43e-2882-45bf-b351-0283abe09fe9.png" alt="Dashboard Demo"/>
+</p>
+
+<p align="center">
+  <img width="700" src="https://user-images.githubusercontent.com/83146518/217286048-d61ea80b-5352-45b3-ac76-e6c53db63c05.png" alt="WorkplaceCard Demo"/>
 </p>
 
 ## 🦄 Features
@@ -52,8 +58,8 @@ npm run dev
 
 - [x] add category management
 - [x] add workplace management
+- [x] generate random icon (click to update)
 - [ ] add done task management
-- [ ] generate random icon
 - [ ] add icon choice
 - [ ] use related info instead deadline
 - [ ] refactor task Card
