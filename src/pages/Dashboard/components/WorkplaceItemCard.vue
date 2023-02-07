@@ -27,6 +27,10 @@ const updateWorkplaceIcon = () => {
   workplaceStore.updateWorkplaceIconById(currItem.workplace.id)
 }
 
+const updateCategoryNameById = (newName, categoryId) => {
+  workplaceStore.updateCategoryNameById(currItem.workplace.id, categoryId, newName)
+}
+
 watch(() => workplaceName.value, (newValue) => {
   workplaceStore.updateWorkplaceNameById(currItem.workplace.id, newValue)
 })
@@ -49,7 +53,7 @@ watch(() => workplaceName.value, (newValue) => {
       </div>
     </div>
     <div class="card-body is-flex">
-      <GroupItemCard v-for="category in workplaceStore.getWorkplaceById(currItem.workplace.id)" :key="category.id" :category="category" />
+      <GroupItemCard v-for="category in workplaceStore.getWorkplaceById(currItem.workplace.id)" :key="category.id" :category="category" @category-name-update="updateCategoryNameById" />
       <div v-if="isCategoryEmpty" class="new-group-button" @click="createNewCategory">
         <AddGroupButton />
       </div>

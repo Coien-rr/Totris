@@ -116,5 +116,12 @@ export const useWorkplaceStore = defineStore('workplaces', {
       const workplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
       this.workplaces[workplaceIndex].name = newName
     },
+
+    async updateCategoryNameById(workplaceId, categoryId, newName) {
+      const workplaceIndex = this.workplaces.findIndex(w => w.id === workplaceId)
+      const categoryIndex = this.workplaces[workplaceIndex].categories.findIndex(c => c.id === categoryId)
+      this.workplaces[workplaceIndex].categories[categoryIndex].name = newName
+      await this.initWorkplace()
+    },
   },
 })
