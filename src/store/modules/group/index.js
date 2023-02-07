@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { useTaskStore } from '../task'
 import { useCategoryStore } from '../category'
 import { getCategoryById, localSetItem } from '~/utils/localDataTool/category.js'
-import { randomEmoji } from '~/utils/randomEmoji'
+import {randomEmoji} from '~/utils/randomEmoji'
 export const useGroupStore = defineStore('groups', {
   state: () => ({
     /** @type { idCount:number } */
@@ -74,7 +74,7 @@ export const useGroupStore = defineStore('groups', {
     },
 
     updateGroupIconById(id) {
-      const groupIndex = this.groups.findIndex(gproup => group.id === id)
+      const groupIndex = this.groups.findIndex(group => group.id === id)
       if (groupIndex === -1)
         return
       this.groups[groupIndex].icon = randomEmoji()

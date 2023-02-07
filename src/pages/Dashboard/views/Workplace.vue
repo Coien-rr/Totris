@@ -31,7 +31,6 @@ const updateGroupName = (groupID, newName) => {
 
 function updateGroupIcon(groupID) {
   groupStore.updateGroupIconById(groupID)
-  console.log('update');
 }
 </script>
 
