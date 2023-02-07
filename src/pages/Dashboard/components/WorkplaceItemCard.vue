@@ -40,8 +40,6 @@ watch(() => workplaceName.value, (newValue) => {
   <div class="workplace-item-card">
     <div class="card-header">
       <div class="card-header-content">
-        <!-- TODO: feature: generate random icon  -->
-        <!-- TODO: feature: change workplace name   -->
         <!-- NOTE: use @click.stop to prevent click event from propagating to parent -->
         <div class="card-header-content-icon" @click.stop="updateWorkplaceIcon">
           {{ workplace.icon }}
